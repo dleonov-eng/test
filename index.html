@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Отчет по заправкам</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -152,6 +153,20 @@
         .badge-no { background-color: #f44336; color: white; }
         .badge-queue { background-color: #ff9800; color: white; }
         .badge-low { background-color: #2196F3; color: white; }
+        .dynamics-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+        .dynamics-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            margin: 20px 0;
+            height: 300px;
+        }
     </style>
 </head>
 <body>
@@ -174,6 +189,16 @@
             <div class="summary-card status-no">
                 <h3>Нет топлива</h3>
                 <div class="value">1809</div>
+            </div>
+        </div>
+        
+        <div class="dynamics-section">
+            <h2>📊 Динамика наличия топлива (последние 24 часа)</h2>
+            <div class="chart-container">
+                <canvas id="fuelPercentChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="fuelCountsChart"></canvas>
             </div>
         </div>
         
@@ -43039,6 +43064,123 @@
             groups.forEach(group => {
                 table.appendChild(group);
             });
+        }
+        
+        // Initialize dynamics charts
+        const russiaStats = [{"timestamp": "2026-06-26 22:31:37.105638", "total_stations": 3048, "yes_count": 663, "no_count": 1809, "queue_count": 472, "low_count": 104, "yes_percent": 40.6}];
+        
+        if (russiaStats.length > 0) {
+            const labels = russiaStats.map(d => {
+                const date = new Date(d.timestamp);
+                return date.toLocaleString('ru-RU', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            });
+            
+            const yesPercent = russiaStats.map(d => d.yes_percent);
+            const yesCount = russiaStats.map(d => d.yes_count);
+            const noCount = russiaStats.map(d => d.no_count);
+            const queueCount = russiaStats.map(d => d.queue_count);
+            const lowCount = russiaStats.map(d => d.low_count);
+            
+            // Percent chart
+            new Chart(document.getElementById('fuelPercentChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '% с топливом',
+                        data: yesPercent,
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Процент заправок с топливом'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: '%'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Counts chart
+            new Chart(document.getElementById('fuelCountsChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Топливо есть',
+                            data: yesCount,
+                            borderColor: '#4CAF50',
+                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                            fill: false
+                        },
+                        {
+                            label: 'Нет топлива',
+                            data: noCount,
+                            borderColor: '#f44336',
+                            backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                            fill: false
+                        },
+                        {
+                            label: 'Очередь',
+                            data: queueCount,
+                            borderColor: '#ff9800',
+                            backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                            fill: false
+                        },
+                        {
+                            label: 'Мало',
+                            data: lowCount,
+                            borderColor: '#2196F3',
+                            backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Количество заправок по статусу'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Количество'
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            document.querySelector('.dynamics-section').innerHTML = 
+                '<p>Нет данных для отображения динамики. Запустите save_snapshot.py для сбора данных.</p>';
         }
     </script>
 </body>
