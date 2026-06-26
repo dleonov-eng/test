@@ -43071,12 +43071,17 @@
             const regionId = document.getElementById('regionSelect').value;
             const hours = document.getElementById('hoursSelect').value;
             
-            // For now, use the data embedded in the page
-            // In production, this would be an API call
+            // Get data for selected region
             const russiaStats = [{"timestamp": "2026-06-26 22:31:37.105638", "total_stations": 3048, "yes_count": 663, "no_count": 1809, "queue_count": 472, "low_count": 104, "yes_percent": 40.6}];
+            const allRegionStats = {"8": [], "21": [], "18": [], "19": [], "5": [], "20": [], "2": [], "4": [], "7": [], "6": [], "1": [], "3": []};
             
-            if (russiaStats.length > 0) {
-                updateCharts(russiaStats);
+            let dataToUse = russiaStats;
+            if (regionId && allRegionStats[regionId]) {
+                dataToUse = allRegionStats[regionId];
+            }
+            
+            if (dataToUse.length > 0) {
+                updateCharts(dataToUse);
             } else {
                 document.querySelector('.dynamics-section').innerHTML = 
                     '<p>Нет данных для отображения динамики. Запустите save_snapshot.py для сбора данных.</p>';
