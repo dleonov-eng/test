@@ -102,7 +102,7 @@
             background: #f9f9f9;
         }
         .station-details.show {
-            display: table-row;
+            display: table-row !important;
         }
         .station-details-content {
             padding: 15px;
@@ -41748,10 +41748,12 @@
                 if (!row.classList.contains('station-details')) {
                     const cityName = row.getAttribute('data-city');
                     const detailRow = document.getElementById('details-' + cityName);
+                    const cells = row.querySelectorAll('td');
                     cityData.push({
                         cityRow: row.outerHTML,
                         detailRow: detailRow ? detailRow.outerHTML : null,
-                        cityName: cityName
+                        cityName: cityName,
+                        values: Array.from(cells).map(cell => cell.textContent.trim())
                     });
                 }
             }
@@ -41799,12 +41801,16 @@
             const detailsRow = document.getElementById('details-' + cityName);
             const btn = event.target;
             
-            if (detailsRow.classList.contains('show')) {
-                detailsRow.classList.remove('show');
-                btn.textContent = '▶';
-            } else {
-                detailsRow.classList.add('show');
-                btn.textContent = '▼';
+            if (detailsRow) {
+                if (detailsRow.classList.contains('show')) {
+                    detailsRow.classList.remove('show');
+                    detailsRow.style.display = 'none';
+                    btn.textContent = '▶';
+                } else {
+                    detailsRow.classList.add('show');
+                    detailsRow.style.display = 'table-row';
+                    btn.textContent = '▼';
+                }
             }
         }
         
@@ -41834,22 +41840,10 @@
                 }
             });
             
-            // Sort city data
+            // Sort city data using stored values
             cityData.sort((a, b) => {
-                // Parse values from HTML
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = a.cityRow;
-                const aRow = tempDiv.querySelector('tr');
-                tempDiv.innerHTML = b.cityRow;
-                const bRow = tempDiv.querySelector('tr');
-                
-                const aCell = aRow.cells[columnIndex];
-                const bCell = bRow.cells[columnIndex];
-                
-                if (!aCell || !bCell) return 0;
-                
-                const aText = aCell.textContent.trim();
-                const bText = bCell.textContent.trim();
+                const aText = a.values[columnIndex] || '';
+                const bText = b.values[columnIndex] || '';
                 
                 // Check if numeric
                 const aNum = parseFloat(aText.replace(/[^0-9.-]/g, ''));
@@ -41865,21 +41859,18 @@
                     : bText.localeCompare(aText, 'ru');
             });
             
-            // Rebuild tbody
-            tbody.innerHTML = '';
+            // Move DOM elements in sorted order
             cityData.forEach(item => {
-                tbody.insertAdjacentHTML('beforeend', item.cityRow);
-                if (item.detailRow) {
-                    tbody.insertAdjacentHTML('beforeend', item.detailRow);
+                const cityRow = document.querySelector(`tr[data-city="${item.cityName}"]`);
+                const detailRow = document.getElementById('details-' + item.cityName);
+                
+                if (cityRow) {
+                    tbody.appendChild(cityRow);
+                    if (detailRow) {
+                        // Insert detail row immediately after city row
+                        tbody.insertBefore(detailRow, cityRow.nextSibling);
+                    }
                 }
-            });
-            
-            // Re-attach event listeners
-            document.querySelectorAll('.expand-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const cityName = this.closest('tr').getAttribute('data-city');
-                    toggleDetails(cityName);
-                });
             });
             
             // Restore expanded state
@@ -41887,6 +41878,7 @@
                 const detailRow = document.getElementById('details-' + cityName);
                 if (detailRow) {
                     detailRow.classList.add('show');
+                    detailRow.style.display = 'table-row';
                     const cityRow = document.querySelector(`tr[data-city="${cityName}"]`);
                     if (cityRow) {
                         const btn = cityRow.querySelector('.expand-btn');
