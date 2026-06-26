@@ -219,12 +219,12 @@
             gap: 5px;
         }
         .tab {
-            padding: 6px 14px;
+            padding: 4px 10px;
             background: #f5f5f5;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.85em;
+            font-size: 0.75em;
         }
         .tab.active {
             background: white;
@@ -263,19 +263,19 @@
             <div class="summary">
             <div class="summary-card">
                 <h3>Всего городов</h3>
-                <div class="value">837</div>
+                <div class="value">840</div>
             </div>
             <div class="summary-card">
                 <h3>Всего заправок</h3>
-                <div class="value">2994</div>
+                <div class="value">3008</div>
             </div>
             <div class="summary-card status-yes">
                 <h3>Топливо есть</h3>
-                <div class="value">1230</div>
+                <div class="value">1234</div>
             </div>
             <div class="summary-card status-no">
                 <h3>Нет топлива</h3>
-                <div class="value">1764</div>
+                <div class="value">1774</div>
             </div>
         </div>
         
@@ -9142,6 +9142,482 @@
                 </tr>
             </tbody>
 
+            <tbody class="city-group" data-city="Самара">
+                <tr class="city-row" data-city="Самара">
+                    <td>
+                        <button class="expand-btn" onclick="toggleDetails('Самара')">▶</button>
+                        <strong>Самара</strong>
+                    </td>
+                    <td>38</td>
+                    <td><span class="badge badge-yes">18</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 7)</small></td>
+                    <td><span class="badge badge-no">20</span></td>
+                    <td>47.4%</td>
+                </tr>
+                <tr class="station-details" id="details-Самара">
+                    <td colspan="5">
+                        <div class="station-details-content">
+
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Лукойл Лукойл</div>
+                                    <div class="station-addr">Лукойл, 32, улица Крупской, Самарский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443099, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 07:56:01</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Башнефть Башнефть</div>
+                                    <div class="station-addr">10Б, Дачная улица, Верхние ямы, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:16:24</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Башнефть Башнефть</div>
+                                    <div class="station-addr">Башнефть, 15А, Московское шоссе, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:18:55</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Башнефть Башнефть</div>
+                                    <div class="station-addr">Башнефть, Ясский переулок, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443017, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 14:16:58</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, улица Промышленности, Чуваши, Советский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 07:18:51</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Татнефть Татнефть</div>
+                                    <div class="station-addr">Татнефть, Заводское шоссе, 5-й Поселок Киркомбината, Советский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 06:54:13</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Татнефть Татнефть</div>
+                                    <div class="station-addr">Татнефть, Ново-Садовая улица, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 14:57:09</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">АЗС-робот АЗС-робот</div>
+                                    <div class="station-addr">АЗС-робот, Южное шоссе, Куйбышевский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:19:18</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, 232, Московское шоссе, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443125, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:01:01</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Teboil Teboil</div>
+                                    <div class="station-addr">Teboil, Ново-Садовая улица, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:49:49</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Заправка Заправка</div>
+                                    <div class="station-addr">Заводское шоссе, Советский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 03:38:21</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Башнефть Башнефть</div>
+                                    <div class="station-addr">Башнефть, улица 22-го Партсъезда, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 05:29:41</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Татнефть Татнефть</div>
+                                    <div class="station-addr">Татнефть, 266А, Московское шоссе, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443125, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:09:19</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, Демократическая улица, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 04:00:05</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Заправка Заправка</div>
+                                    <div class="station-addr">Алма-Атинская улица, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 03:58:38</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Лукойл Лукойл</div>
+                                    <div class="station-addr">Лукойл, улица Стара-Загора, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 07:12:18</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Татнефть Татнефть</div>
+                                    <div class="station-addr">Татнефть, Заводское шоссе, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 08:39:16</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Метановая заправка Газпром Метановая заправка Газпром</div>
+                                    <div class="station-addr">Газпром АГНКС, 522, проспект Карла Маркса, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 07:22:27</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Олви Олви</div>
+                                    <div class="station-addr">Олви, 5, Волжское шоссе, Управленческий, Красноглинский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:31:12</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Заправка Заправка</div>
+                                    <div class="station-addr">Красноглинское шоссе, Управленческий, Красноглинский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 09:34:34</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, Ильинская площадь, Ленинский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:20:35</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Олви Олви</div>
+                                    <div class="station-addr">Олви, улица Мичурина, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 16:54:44</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Башнефть Башнефть</div>
+                                    <div class="station-addr">Башнефть, Партизанская улица, Верхние ямы, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:07:49</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Teboil Teboil</div>
+                                    <div class="station-addr">Teboil, Московское шоссе, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:26:42</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Лукойл Лукойл</div>
+                                    <div class="station-addr">Лукойл, Уральская улица, Кряж, Куйбышевский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 08:22:30</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Татнефть Татнефть</div>
+                                    <div class="station-addr">Татнефть, улица Георгия Димитрова, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="queue-indicator queue-large">≈ 20–50 машин</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 17:32:50</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Заправка Заправка</div>
+                                    <div class="station-addr">Московское шоссе, Берёзовая аллея, Красный пахарь, Красноглинский район, Озерки, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:09:24</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">IRBIS Irbis</div>
+                                    <div class="station-addr">Ирбис, 29Б, Владимирская улица, Шмидта, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 95</span> <span class="fuel-badge">Есть 100</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:16:40</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Газпромнефть Газпромнефть</div>
+                                    <div class="station-addr">Газпромнефть, 61А, улица Соколова, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443068, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:26:18</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, Московское шоссе, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 95</span> <span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:35:17</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Shell Shell</div>
+                                    <div class="station-addr">Shell, 187А, Ново-Садовая улица, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:28:14</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Заправка Заправка</div>
+                                    <div class="station-addr">Заводское шоссе, 5-й Поселок Киркомбината, Советский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:19:53</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, Южное шоссе, Куйбышевский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:37:28</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Irbis Irbis</div>
+                                    <div class="station-addr">Ирбис, 435 к1, проспект Кирова, Солнечный-5, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:23:57</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Олви Олви</div>
+                                    <div class="station-addr">Олви, 393А, prospekt Kirova, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:37:53</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Олви Олви</div>
+                                    <div class="station-addr">Олви, 415-1, проспект Кирова, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443031, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="queue-indicator queue-small">Небольшая очередь</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:53:04</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Татнефть Татнефть</div>
+                                    <div class="station-addr">Алма-Атинская улица, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 17:25:24</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Олви Олви</div>
+                                    <div class="station-addr">Олви, Московское шоссе (дублер), 18-й км, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span> <span class="fuel-badge">Есть 95</span> <span class="fuel-badge">Есть ДТ</span> <span class="queue-indicator queue-none">Очереди нет</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 06:05:46</small>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
             <tbody class="city-group" data-city="Волгоград">
                 <tr class="city-row" data-city="Волгоград">
                     <td>
@@ -10015,434 +10491,6 @@
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
                                     <small style="color: #999; font-size: 0.75em;">2026-06-26 07:13:33</small>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-
-            <tbody class="city-group" data-city="Самара">
-                <tr class="city-row" data-city="Самара">
-                    <td>
-                        <button class="expand-btn" onclick="toggleDetails('Самара')">▶</button>
-                        <strong>Самара</strong>
-                    </td>
-                    <td>34</td>
-                    <td><span class="badge badge-yes">18</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 7)</small></td>
-                    <td><span class="badge badge-no">16</span></td>
-                    <td>52.9%</td>
-                </tr>
-                <tr class="station-details" id="details-Самара">
-                    <td colspan="5">
-                        <div class="station-details-content">
-
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Лукойл Лукойл</div>
-                                    <div class="station-addr">Лукойл, 32, улица Крупской, Самарский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443099, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 07:56:01</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Башнефть Башнефть</div>
-                                    <div class="station-addr">10Б, Дачная улица, Верхние ямы, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:16:24</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Башнефть Башнефть</div>
-                                    <div class="station-addr">Башнефть, 15А, Московское шоссе, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:18:55</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Башнефть Башнефть</div>
-                                    <div class="station-addr">Башнефть, Ясский переулок, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443017, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 14:16:58</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Роснефть Роснефть</div>
-                                    <div class="station-addr">Роснефть, улица Промышленности, Чуваши, Советский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 07:18:51</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Teboil Teboil</div>
-                                    <div class="station-addr">Teboil, Ново-Садовая улица, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:49:49</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Заправка Заправка</div>
-                                    <div class="station-addr">Заводское шоссе, Советский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 03:38:21</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Башнефть Башнефть</div>
-                                    <div class="station-addr">Башнефть, улица 22-го Партсъезда, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 05:29:41</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Татнефть Татнефть</div>
-                                    <div class="station-addr">Татнефть, 266А, Московское шоссе, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443125, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:09:19</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Роснефть Роснефть</div>
-                                    <div class="station-addr">Роснефть, Демократическая улица, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 04:00:05</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Заправка Заправка</div>
-                                    <div class="station-addr">Алма-Атинская улица, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 03:58:38</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Лукойл Лукойл</div>
-                                    <div class="station-addr">Лукойл, улица Стара-Загора, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 07:12:18</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Татнефть Татнефть</div>
-                                    <div class="station-addr">Татнефть, Заводское шоссе, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 08:39:16</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Метановая заправка Газпром Метановая заправка Газпром</div>
-                                    <div class="station-addr">Газпром АГНКС, 522, проспект Карла Маркса, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 07:22:27</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Олви Олви</div>
-                                    <div class="station-addr">Олви, 5, Волжское шоссе, Управленческий, Красноглинский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:31:12</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Заправка Заправка</div>
-                                    <div class="station-addr">Красноглинское шоссе, Управленческий, Красноглинский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 09:34:34</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Роснефть Роснефть</div>
-                                    <div class="station-addr">Роснефть, Ильинская площадь, Ленинский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:20:35</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Олви Олви</div>
-                                    <div class="station-addr">Олви, улица Мичурина, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 16:54:44</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Башнефть Башнефть</div>
-                                    <div class="station-addr">Башнефть, Партизанская улица, Верхние ямы, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:07:49</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Teboil Teboil</div>
-                                    <div class="station-addr">Teboil, Московское шоссе, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:26:42</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Лукойл Лукойл</div>
-                                    <div class="station-addr">Лукойл, Уральская улица, Кряж, Куйбышевский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 08:22:30</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Татнефть Татнефть</div>
-                                    <div class="station-addr">Татнефть, улица Георгия Димитрова, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="queue-indicator queue-large">≈ 20–50 машин</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 17:32:50</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Заправка Заправка</div>
-                                    <div class="station-addr">Московское шоссе, Берёзовая аллея, Красный пахарь, Красноглинский район, Озерки, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:09:24</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">IRBIS Irbis</div>
-                                    <div class="station-addr">Ирбис, 29Б, Владимирская улица, Шмидта, Железнодорожный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 95</span> <span class="fuel-badge">Есть 100</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:16:40</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Газпромнефть Газпромнефть</div>
-                                    <div class="station-addr">Газпромнефть, 61А, улица Соколова, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443068, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:26:18</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Роснефть Роснефть</div>
-                                    <div class="station-addr">Роснефть, Московское шоссе, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 95</span> <span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:35:17</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Shell Shell</div>
-                                    <div class="station-addr">Shell, 187А, Ново-Садовая улица, Октябрьский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:28:14</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Заправка Заправка</div>
-                                    <div class="station-addr">Заводское шоссе, 5-й Поселок Киркомбината, Советский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:19:53</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Роснефть Роснефть</div>
-                                    <div class="station-addr">Роснефть, Южное шоссе, Куйбышевский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:37:28</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Irbis Irbis</div>
-                                    <div class="station-addr">Ирбис, 435 к1, проспект Кирова, Солнечный-5, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:23:57</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Олви Олви</div>
-                                    <div class="station-addr">Олви, 393А, prospekt Kirova, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:37:53</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Олви Олви</div>
-                                    <div class="station-addr">Олви, 415-1, проспект Кирова, Промышленный район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443031, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="queue-indicator queue-small">Небольшая очередь</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:53:04</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Татнефть Татнефть</div>
-                                    <div class="station-addr">Алма-Атинская улица, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 17:25:24</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Олви Олви</div>
-                                    <div class="station-addr">Олви, Московское шоссе (дублер), 18-й км, Кировский район, Самара, городской округ Самара, Самарская область, Приволжский федеральный округ, 443028, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span> <span class="fuel-badge">Есть 95</span> <span class="fuel-badge">Есть ДТ</span> <span class="queue-indicator queue-none">Очереди нет</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 06:05:46</small>
                                 </div>
                             </div>
                         </div>
@@ -22794,6 +22842,98 @@
                 </tr>
             </tbody>
 
+            <tbody class="city-group" data-city="Барнаул">
+                <tr class="city-row" data-city="Барнаул">
+                    <td>
+                        <button class="expand-btn" onclick="toggleDetails('Барнаул')">▶</button>
+                        <strong>Барнаул</strong>
+                    </td>
+                    <td>6</td>
+                    <td><span class="badge badge-yes">3</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 1, Мало на: 1)</small></td>
+                    <td><span class="badge badge-no">3</span></td>
+                    <td>50.0%</td>
+                </tr>
+                <tr class="station-details" id="details-Барнаул">
+                    <td colspan="5">
+                        <div class="station-details-content">
+
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, 90, улица Гоголя, Центральный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
+                                    <div class="station-region">Алтайский край</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:02:18</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, проспект Строителей, Железнодорожный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
+                                    <div class="station-region">Алтайский край</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:32:49</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Заправка Заправка</div>
+                                    <div class="station-addr">улица Малахова, Индустриальный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
+                                    <div class="station-region">Алтайский край</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 04:29:17</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Газпромнефть Газпромнефть</div>
+                                    <div class="station-addr">Газпромнефть, проспект Космонавтов, Ленинский район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
+                                    <div class="station-region">Алтайский край</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status low">Мало</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:15:09</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, проспект Калинина, Железнодорожный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
+                                    <div class="station-region">Алтайский край</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 08:50:13</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Роснефть Роснефть</div>
+                                    <div class="station-addr">Роснефть, Северо-Западная улица, Железнодорожный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
+                                    <div class="station-region">Алтайский край</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 95</span> <span class="queue-indicator queue-small">Небольшая очередь</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 07:20:25</small>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
             <tbody class="city-group" data-city="Ставрополь">
                 <tr class="city-row" data-city="Ставрополь">
                     <td>
@@ -26838,6 +26978,74 @@
                 </tr>
             </tbody>
 
+            <tbody class="city-group" data-city="городское поселение Александров">
+                <tr class="city-row" data-city="городское поселение Александров">
+                    <td>
+                        <button class="expand-btn" onclick="toggleDetails('городское_поселение_Александров')">▶</button>
+                        <strong>городское поселение Александров</strong>
+                    </td>
+                    <td>4</td>
+                    <td><span class="badge badge-yes">0</span></td>
+                    <td><span class="badge badge-no">4</span></td>
+                    <td>0.0%</td>
+                </tr>
+                <tr class="station-details" id="details-городское_поселение_Александров">
+                    <td colspan="5">
+                        <div class="station-details-content">
+
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Teboil Teboil</div>
+                                    <div class="station-addr">Teboil, Красный переулок, Черёмушки, городское поселение Александров, Александровский район, Владимирская область, Центральный федеральный округ, 601655, Россия</div>
+                                    <div class="station-region">Владимирская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:32:00</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Лукойл Лукойл</div>
+                                    <div class="station-addr">Лукойл, Кольчугинская улица, городское поселение Александров, Александровский район, Владимирская область, Центральный федеральный округ, 601657, Россия</div>
+                                    <div class="station-region">Владимирская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:25:52</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Газпромнефть Газпромнефть</div>
+                                    <div class="station-addr">Газпромнефть, 58, Двориковское шоссе, городское поселение Александров, Александровский район, Владимирская область, Центральный федеральный округ, 601657, Россия</div>
+                                    <div class="station-region">Владимирская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:39:13</small>
+                                </div>
+                            </div>
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">FINNA FINNA</div>
+                                    <div class="station-addr">FINNA, 35, улица Гагарина, городское поселение Александров, Александровский район, Владимирская область, Центральный федеральный округ, 601657, Россия</div>
+                                    <div class="station-region">Владимирская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:38:27</small>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
             <tbody class="city-group" data-city="Липецк">
                 <tr class="city-row" data-city="Липецк">
                     <td>
@@ -29630,55 +29838,55 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Барнаул">
-                <tr class="city-row" data-city="Барнаул">
+            <tbody class="city-group" data-city="городское поселение Смышляевка">
+                <tr class="city-row" data-city="городское поселение Смышляевка">
                     <td>
-                        <button class="expand-btn" onclick="toggleDetails('Барнаул')">▶</button>
-                        <strong>Барнаул</strong>
+                        <button class="expand-btn" onclick="toggleDetails('городское_поселение_Смышляевка')">▶</button>
+                        <strong>городское поселение Смышляевка</strong>
                     </td>
                     <td>3</td>
-                    <td><span class="badge badge-yes">0</span></td>
-                    <td><span class="badge badge-no">3</span></td>
-                    <td>0.0%</td>
+                    <td><span class="badge badge-yes">1</span></td>
+                    <td><span class="badge badge-no">2</span></td>
+                    <td>33.3%</td>
                 </tr>
-                <tr class="station-details" id="details-Барнаул">
+                <tr class="station-details" id="details-городское_поселение_Смышляевка">
                     <td colspan="5">
                         <div class="station-details-content">
 
                             <div class="station-item">
                                 <div class="station-info">
-                                    <div class="station-brand">Роснефть Роснефть</div>
-                                    <div class="station-addr">Роснефть, 90, улица Гоголя, Центральный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
-                                    <div class="station-region">Алтайский край</div>
+                                    <div class="station-brand">Татнефть Татнефть</div>
+                                    <div class="station-addr">Татнефть, улица Иоанна Снычева, микрорайон Кошелев-Парк, Стройкерамика, городское поселение Смышляевка, Волжский район, Самарская область, Приволжский федеральный округ, 443546, Россия</div>
+                                    <div class="station-region">Самарская область</div>
                                     
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:02:18</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 12:14:44</small>
                                 </div>
                             </div>
                             <div class="station-item">
                                 <div class="station-info">
-                                    <div class="station-brand">Роснефть Роснефть</div>
-                                    <div class="station-addr">Роснефть, проспект Строителей, Железнодорожный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
-                                    <div class="station-region">Алтайский край</div>
+                                    <div class="station-brand">Лукойл Лукойл</div>
+                                    <div class="station-addr">Лукойл, 21, Череповецкая улица, Спутник, городское поселение Смышляевка, Волжский район, Самарская область, Приволжский федеральный округ, 443548, Россия</div>
+                                    <div class="station-region">Самарская область</div>
                                     
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 11:32:49</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 12:26:28</small>
                                 </div>
                             </div>
                             <div class="station-item">
                                 <div class="station-info">
-                                    <div class="station-brand">Заправка Заправка</div>
-                                    <div class="station-addr">улица Малахова, Индустриальный район, Барнаул, городской округ Барнаул, Алтайский край, Сибирский федеральный округ, 656000, Россия</div>
-                                    <div class="station-region">Алтайский край</div>
-                                    
+                                    <div class="station-brand">Башнефть Башнефть</div>
+                                    <div class="station-addr">Башнефть, Самара — Бугуруслан, Стройкерамика, городское поселение Смышляевка, Волжский район, Самарская область, Приволжский федеральный округ, 443548, Россия</div>
+                                    <div class="station-region">Самарская область</div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть ДТ</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 04:29:17</small>
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:24:10</small>
                                 </div>
                             </div>
                         </div>
@@ -33591,50 +33799,6 @@
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
                                     <small style="color: #999; font-size: 0.75em;">2026-06-25 14:02:41</small>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-
-            <tbody class="city-group" data-city="городское поселение Смышляевка">
-                <tr class="city-row" data-city="городское поселение Смышляевка">
-                    <td>
-                        <button class="expand-btn" onclick="toggleDetails('городское_поселение_Смышляевка')">▶</button>
-                        <strong>городское поселение Смышляевка</strong>
-                    </td>
-                    <td>2</td>
-                    <td><span class="badge badge-yes">1</span></td>
-                    <td><span class="badge badge-no">1</span></td>
-                    <td>50.0%</td>
-                </tr>
-                <tr class="station-details" id="details-городское_поселение_Смышляевка">
-                    <td colspan="5">
-                        <div class="station-details-content">
-
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Татнефть Татнефть</div>
-                                    <div class="station-addr">Татнефть, улица Иоанна Снычева, микрорайон Кошелев-Парк, Стройкерамика, городское поселение Смышляевка, Волжский район, Самарская область, Приволжский федеральный округ, 443546, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-25 12:14:44</small>
-                                </div>
-                            </div>
-                            <div class="station-item">
-                                <div class="station-info">
-                                    <div class="station-brand">Башнефть Башнефть</div>
-                                    <div class="station-addr">Башнефть, Самара — Бугуруслан, Стройкерамика, городское поселение Смышляевка, Волжский район, Самарская область, Приволжский федеральный округ, 443548, Россия</div>
-                                    <div class="station-region">Самарская область</div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть ДТ</span></div>
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 12:24:10</small>
                                 </div>
                             </div>
                         </div>
@@ -42267,6 +42431,70 @@
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
                                     <small style="color: #999; font-size: 0.75em;">2026-06-26 07:59:51</small>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tbody class="city-group" data-city="Новоалтайск">
+                <tr class="city-row" data-city="Новоалтайск">
+                    <td>
+                        <button class="expand-btn" onclick="toggleDetails('Новоалтайск')">▶</button>
+                        <strong>Новоалтайск</strong>
+                    </td>
+                    <td>1</td>
+                    <td><span class="badge badge-yes">1</span></td>
+                    <td><span class="badge badge-no">0</span></td>
+                    <td>100.0%</td>
+                </tr>
+                <tr class="station-details" id="details-Новоалтайск">
+                    <td colspan="5">
+                        <div class="station-details-content">
+
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Газпромнефть Газпромнефть</div>
+                                    <div class="station-addr">Газпромнефть, 16, Правобережный тракт, Новоалтайск, Санниковский сельсовет, Первомайский район, Алтайский край, Сибирский федеральный округ, 658084, Россия</div>
+                                    <div class="station-region">Алтайский край</div>
+                                    <div class="station-detail"><span class="queue-indicator queue-none">Очереди нет</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 09:05:10</small>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <tbody class="city-group" data-city="Александров">
+                <tr class="city-row" data-city="Александров">
+                    <td>
+                        <button class="expand-btn" onclick="toggleDetails('Александров')">▶</button>
+                        <strong>Александров</strong>
+                    </td>
+                    <td>1</td>
+                    <td><span class="badge badge-yes">0</span></td>
+                    <td><span class="badge badge-no">1</span></td>
+                    <td>0.0%</td>
+                </tr>
+                <tr class="station-details" id="details-Александров">
+                    <td colspan="5">
+                        <div class="station-details-content">
+
+                            <div class="station-item">
+                                <div class="station-info">
+                                    <div class="station-brand">Газпромнефть Газпромнефть</div>
+                                    <div class="station-addr">Газпромнефть, 48Б, Кольчугинская улица, Александров, Андреевское сельское поселение, Александровский район, Владимирская область, Центральный федеральный округ, 601652, Россия</div>
+                                    <div class="station-region">Владимирская область</div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-06-26 10:33:13</small>
                                 </div>
                             </div>
                         </div>
@@ -52976,17 +53204,17 @@
 
                 <tr>
                     <td>Лукойл</td>
-                    <td>525</td>
+                    <td>527</td>
                 </tr>
 
                 <tr>
                     <td>Роснефть</td>
-                    <td>406</td>
+                    <td>409</td>
                 </tr>
 
                 <tr>
                     <td>Газпромнефть</td>
-                    <td>397</td>
+                    <td>401</td>
                 </tr>
 
                 <tr>
@@ -52996,12 +53224,12 @@
 
                 <tr>
                     <td>Татнефть</td>
-                    <td>211</td>
+                    <td>213</td>
                 </tr>
 
                 <tr>
                     <td>Teboil</td>
-                    <td>141</td>
+                    <td>142</td>
                 </tr>
 
                 <tr>
@@ -53084,8 +53312,8 @@
             const hours = document.getElementById('hoursSelect').value;
             
             // Get data for selected region
-            const russiaStats = [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 2994, "yes_count": 659, "no_count": 1764, "queue_count": 469, "low_count": 102, "yes_percent": 41.1}];
-            const allRegionStats = {"84": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 3, "yes_count": 2, "no_count": 0, "queue_count": 1, "low_count": 0, "yes_percent": 100.0}], "85": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 8, "yes_count": 4, "no_count": 3, "queue_count": 1, "low_count": 0, "yes_percent": 62.5}], "22": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 5, "yes_count": 0, "no_count": 5, "queue_count": 0, "low_count": 0, "yes_percent": 0.0}], "23": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "24": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 8, "yes_count": 3, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "86": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 137, "yes_count": 28, "no_count": 84, "queue_count": 21, "low_count": 4, "yes_percent": 38.7}], "25": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 6, "yes_count": 3, "no_count": 2, "queue_count": 0, "low_count": 1, "yes_percent": 66.7}], "26": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 13, "yes_count": 2, "no_count": 8, "queue_count": 2, "low_count": 1, "yes_percent": 38.5}], "103": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 7, "yes_count": 2, "no_count": 3, "queue_count": 2, "low_count": 0, "yes_percent": 57.1}], "27": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 71, "yes_count": 15, "no_count": 45, "queue_count": 9, "low_count": 2, "yes_percent": 36.6}], "28": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 42, "yes_count": 5, "no_count": 29, "queue_count": 8, "low_count": 0, "yes_percent": 31.0}], "29": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 20, "yes_count": 6, "no_count": 10, "queue_count": 2, "low_count": 2, "yes_percent": 50.0}], "30": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 22, "yes_count": 10, "no_count": 7, "queue_count": 2, "low_count": 3, "yes_percent": 68.2}], "87": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 18, "yes_count": 6, "no_count": 12, "queue_count": 0, "low_count": 0, "yes_percent": 33.3}], "8": [], "31": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "32": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 18, "yes_count": 2, "no_count": 15, "queue_count": 1, "low_count": 0, "yes_percent": 16.7}], "33": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 58, "yes_count": 6, "no_count": 46, "queue_count": 5, "low_count": 1, "yes_percent": 20.7}], "34": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 88, "yes_count": 9, "no_count": 64, "queue_count": 13, "low_count": 2, "yes_percent": 27.3}], "35": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 5, "yes_count": 3, "no_count": 0, "queue_count": 2, "low_count": 0, "yes_percent": 100.0}], "88": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "36": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 35, "yes_count": 11, "no_count": 19, "queue_count": 2, "low_count": 3, "yes_percent": 45.7}], "89": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 0, "no_count": 1, "queue_count": 0, "low_count": 0, "yes_percent": 0.0}], "90": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 8, "yes_count": 0, "no_count": 5, "queue_count": 2, "low_count": 1, "yes_percent": 37.5}], "37": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 28, "yes_count": 9, "no_count": 13, "queue_count": 6, "low_count": 0, "yes_percent": 53.6}], "91": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 14, "yes_count": 6, "no_count": 7, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "38": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 11, "yes_count": 4, "no_count": 4, "queue_count": 2, "low_count": 1, "yes_percent": 63.6}], "39": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 155, "yes_count": 35, "no_count": 90, "queue_count": 25, "low_count": 5, "yes_percent": 41.9}], "40": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 4, "yes_count": 1, "no_count": 3, "queue_count": 0, "low_count": 0, "yes_percent": 25.0}], "41": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 7, "yes_count": 1, "no_count": 5, "queue_count": 1, "low_count": 0, "yes_percent": 28.6}], "42": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 19, "yes_count": 6, "no_count": 11, "queue_count": 0, "low_count": 2, "yes_percent": 42.1}], "21": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 22, "yes_count": 11, "no_count": 11, "queue_count": 0, "low_count": 0, "yes_percent": 50.0}], "43": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 33, "yes_count": 8, "no_count": 21, "queue_count": 4, "low_count": 0, "yes_percent": 36.4}], "92": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 14, "yes_count": 5, "no_count": 9, "queue_count": 0, "low_count": 0, "yes_percent": 35.7}], "93": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 6, "yes_count": 1, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 33.3}], "18": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 398, "yes_count": 58, "no_count": 229, "queue_count": 90, "low_count": 21, "yes_percent": 42.5}], "19": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 569, "yes_count": 89, "no_count": 358, "queue_count": 108, "low_count": 14, "yes_percent": 37.1}], "44": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 6, "yes_count": 1, "no_count": 1, "queue_count": 1, "low_count": 3, "yes_percent": 83.3}], "94": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 0, "no_count": 0, "queue_count": 0, "low_count": 1, "yes_percent": 100.0}], "45": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 50, "yes_count": 9, "no_count": 25, "queue_count": 16, "low_count": 0, "yes_percent": 50.0}], "46": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 30, "yes_count": 3, "no_count": 19, "queue_count": 8, "low_count": 0, "yes_percent": 36.7}], "47": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 8, "yes_count": 3, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "48": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 7, "yes_count": 3, "no_count": 4, "queue_count": 0, "low_count": 0, "yes_percent": 42.9}], "49": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 7, "yes_count": 5, "no_count": 1, "queue_count": 1, "low_count": 0, "yes_percent": 85.7}], "50": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 4, "yes_count": 0, "no_count": 2, "queue_count": 1, "low_count": 1, "yes_percent": 50.0}], "51": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 22, "yes_count": 7, "no_count": 13, "queue_count": 1, "low_count": 1, "yes_percent": 40.9}], "52": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 13, "yes_count": 6, "no_count": 5, "queue_count": 2, "low_count": 0, "yes_percent": 61.5}], "5": [], "53": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "54": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 11, "yes_count": 3, "no_count": 5, "queue_count": 0, "low_count": 3, "yes_percent": 54.5}], "55": [], "56": [], "57": [], "58": [], "59": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 4, "yes_count": 4, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "60": [], "61": [], "95": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 0, "no_count": 0, "queue_count": 1, "low_count": 0, "yes_percent": 100.0}], "62": [], "63": [], "64": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 202, "yes_count": 44, "no_count": 122, "queue_count": 34, "low_count": 2, "yes_percent": 39.6}], "65": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 48, "yes_count": 7, "no_count": 35, "queue_count": 3, "low_count": 3, "yes_percent": 27.1}], "66": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 73, "yes_count": 27, "no_count": 35, "queue_count": 10, "low_count": 1, "yes_percent": 52.1}], "20": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 33, "yes_count": 11, "no_count": 14, "queue_count": 3, "low_count": 5, "yes_percent": 57.6}], "67": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 44, "yes_count": 10, "no_count": 29, "queue_count": 5, "low_count": 0, "yes_percent": 34.1}], "68": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 101, "yes_count": 33, "no_count": 52, "queue_count": 14, "low_count": 2, "yes_percent": 48.5}], "96": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "2": [], "4": [], "7": [], "69": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 10, "yes_count": 4, "no_count": 5, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "70": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 21, "yes_count": 13, "no_count": 6, "queue_count": 1, "low_count": 1, "yes_percent": 71.4}], "71": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 26, "yes_count": 11, "no_count": 13, "queue_count": 2, "low_count": 0, "yes_percent": 50.0}], "97": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 24, "yes_count": 16, "no_count": 6, "queue_count": 2, "low_count": 0, "yes_percent": 75.0}], "72": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 78, "yes_count": 7, "no_count": 56, "queue_count": 13, "low_count": 2, "yes_percent": 28.2}], "73": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 8, "yes_count": 3, "no_count": 3, "queue_count": 0, "low_count": 2, "yes_percent": 62.5}], "74": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 90, "yes_count": 11, "no_count": 59, "queue_count": 15, "low_count": 5, "yes_percent": 34.4}], "75": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 8, "yes_count": 3, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "98": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 11, "yes_count": 6, "no_count": 5, "queue_count": 0, "low_count": 0, "yes_percent": 54.5}], "76": [], "77": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 17, "yes_count": 5, "no_count": 12, "queue_count": 0, "low_count": 0, "yes_percent": 29.4}], "6": [], "78": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 2, "yes_count": 2, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "79": [], "99": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 13, "yes_count": 6, "no_count": 5, "queue_count": 1, "low_count": 1, "yes_percent": 61.5}], "1": [], "80": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 70, "yes_count": 18, "no_count": 39, "queue_count": 10, "low_count": 3, "yes_percent": 44.3}], "100": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "101": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 29, "yes_count": 8, "no_count": 18, "queue_count": 2, "low_count": 1, "yes_percent": 37.9}], "81": [], "3": [], "82": [], "102": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 7, "yes_count": 4, "no_count": 1, "queue_count": 1, "low_count": 1, "yes_percent": 85.7}], "83": [{"timestamp": "2026-06-27 02:00:33.857351", "total_stations": 56, "yes_count": 9, "no_count": 39, "queue_count": 7, "low_count": 1, "yes_percent": 30.4}]};
+            const russiaStats = [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 3008, "yes_count": 661, "no_count": 1774, "queue_count": 470, "low_count": 103, "yes_percent": 41.0}];
+            const allRegionStats = {"84": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 3, "yes_count": 2, "no_count": 0, "queue_count": 1, "low_count": 0, "yes_percent": 100.0}], "85": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 8, "yes_count": 4, "no_count": 3, "queue_count": 1, "low_count": 0, "yes_percent": 62.5}], "22": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 9, "yes_count": 2, "no_count": 5, "queue_count": 1, "low_count": 1, "yes_percent": 44.4}], "23": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "24": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 8, "yes_count": 3, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "86": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 137, "yes_count": 28, "no_count": 84, "queue_count": 21, "low_count": 4, "yes_percent": 38.7}], "25": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 6, "yes_count": 3, "no_count": 2, "queue_count": 0, "low_count": 1, "yes_percent": 66.7}], "26": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 13, "yes_count": 2, "no_count": 8, "queue_count": 2, "low_count": 1, "yes_percent": 38.5}], "103": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 7, "yes_count": 2, "no_count": 3, "queue_count": 2, "low_count": 0, "yes_percent": 57.1}], "27": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 76, "yes_count": 15, "no_count": 50, "queue_count": 9, "low_count": 2, "yes_percent": 34.2}], "28": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 42, "yes_count": 5, "no_count": 29, "queue_count": 8, "low_count": 0, "yes_percent": 31.0}], "29": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 20, "yes_count": 6, "no_count": 10, "queue_count": 2, "low_count": 2, "yes_percent": 50.0}], "30": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 22, "yes_count": 10, "no_count": 7, "queue_count": 2, "low_count": 3, "yes_percent": 68.2}], "87": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 18, "yes_count": 6, "no_count": 12, "queue_count": 0, "low_count": 0, "yes_percent": 33.3}], "8": [], "31": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "32": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 18, "yes_count": 2, "no_count": 15, "queue_count": 1, "low_count": 0, "yes_percent": 16.7}], "33": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 58, "yes_count": 6, "no_count": 46, "queue_count": 5, "low_count": 1, "yes_percent": 20.7}], "34": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 88, "yes_count": 9, "no_count": 64, "queue_count": 13, "low_count": 2, "yes_percent": 27.3}], "35": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 5, "yes_count": 3, "no_count": 0, "queue_count": 2, "low_count": 0, "yes_percent": 100.0}], "88": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "36": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 35, "yes_count": 11, "no_count": 19, "queue_count": 2, "low_count": 3, "yes_percent": 45.7}], "89": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 0, "no_count": 1, "queue_count": 0, "low_count": 0, "yes_percent": 0.0}], "90": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 8, "yes_count": 0, "no_count": 5, "queue_count": 2, "low_count": 1, "yes_percent": 37.5}], "37": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 28, "yes_count": 9, "no_count": 13, "queue_count": 6, "low_count": 0, "yes_percent": 53.6}], "91": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 14, "yes_count": 6, "no_count": 7, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "38": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 11, "yes_count": 4, "no_count": 4, "queue_count": 2, "low_count": 1, "yes_percent": 63.6}], "39": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 155, "yes_count": 35, "no_count": 90, "queue_count": 25, "low_count": 5, "yes_percent": 41.9}], "40": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 4, "yes_count": 1, "no_count": 3, "queue_count": 0, "low_count": 0, "yes_percent": 25.0}], "41": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 7, "yes_count": 1, "no_count": 5, "queue_count": 1, "low_count": 0, "yes_percent": 28.6}], "42": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 19, "yes_count": 6, "no_count": 11, "queue_count": 0, "low_count": 2, "yes_percent": 42.1}], "21": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 22, "yes_count": 11, "no_count": 11, "queue_count": 0, "low_count": 0, "yes_percent": 50.0}], "43": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 33, "yes_count": 8, "no_count": 21, "queue_count": 4, "low_count": 0, "yes_percent": 36.4}], "92": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 14, "yes_count": 5, "no_count": 9, "queue_count": 0, "low_count": 0, "yes_percent": 35.7}], "93": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 6, "yes_count": 1, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 33.3}], "18": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 398, "yes_count": 58, "no_count": 229, "queue_count": 90, "low_count": 21, "yes_percent": 42.5}], "19": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 569, "yes_count": 89, "no_count": 358, "queue_count": 108, "low_count": 14, "yes_percent": 37.1}], "44": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 6, "yes_count": 1, "no_count": 1, "queue_count": 1, "low_count": 3, "yes_percent": 83.3}], "94": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 0, "no_count": 0, "queue_count": 0, "low_count": 1, "yes_percent": 100.0}], "45": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 50, "yes_count": 9, "no_count": 25, "queue_count": 16, "low_count": 0, "yes_percent": 50.0}], "46": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 30, "yes_count": 3, "no_count": 19, "queue_count": 8, "low_count": 0, "yes_percent": 36.7}], "47": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 8, "yes_count": 3, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "48": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 7, "yes_count": 3, "no_count": 4, "queue_count": 0, "low_count": 0, "yes_percent": 42.9}], "49": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 7, "yes_count": 5, "no_count": 1, "queue_count": 1, "low_count": 0, "yes_percent": 85.7}], "50": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 4, "yes_count": 0, "no_count": 2, "queue_count": 1, "low_count": 1, "yes_percent": 50.0}], "51": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 22, "yes_count": 7, "no_count": 13, "queue_count": 1, "low_count": 1, "yes_percent": 40.9}], "52": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 13, "yes_count": 6, "no_count": 5, "queue_count": 2, "low_count": 0, "yes_percent": 61.5}], "5": [], "53": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "54": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 11, "yes_count": 3, "no_count": 5, "queue_count": 0, "low_count": 3, "yes_percent": 54.5}], "55": [], "56": [], "57": [], "58": [], "59": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 4, "yes_count": 4, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "60": [], "61": [], "95": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 0, "no_count": 0, "queue_count": 1, "low_count": 0, "yes_percent": 100.0}], "62": [], "63": [], "64": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 202, "yes_count": 44, "no_count": 122, "queue_count": 34, "low_count": 2, "yes_percent": 39.6}], "65": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 48, "yes_count": 7, "no_count": 35, "queue_count": 3, "low_count": 3, "yes_percent": 27.1}], "66": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 78, "yes_count": 27, "no_count": 40, "queue_count": 10, "low_count": 1, "yes_percent": 48.7}], "20": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 33, "yes_count": 11, "no_count": 14, "queue_count": 3, "low_count": 5, "yes_percent": 57.6}], "67": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 44, "yes_count": 10, "no_count": 29, "queue_count": 5, "low_count": 0, "yes_percent": 34.1}], "68": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 101, "yes_count": 33, "no_count": 52, "queue_count": 14, "low_count": 2, "yes_percent": 48.5}], "96": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "2": [], "4": [], "7": [], "69": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 10, "yes_count": 4, "no_count": 5, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "70": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 21, "yes_count": 13, "no_count": 6, "queue_count": 1, "low_count": 1, "yes_percent": 71.4}], "71": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 26, "yes_count": 11, "no_count": 13, "queue_count": 2, "low_count": 0, "yes_percent": 50.0}], "97": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 24, "yes_count": 16, "no_count": 6, "queue_count": 2, "low_count": 0, "yes_percent": 75.0}], "72": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 78, "yes_count": 7, "no_count": 56, "queue_count": 13, "low_count": 2, "yes_percent": 28.2}], "73": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 8, "yes_count": 3, "no_count": 3, "queue_count": 0, "low_count": 2, "yes_percent": 62.5}], "74": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 90, "yes_count": 11, "no_count": 59, "queue_count": 15, "low_count": 5, "yes_percent": 34.4}], "75": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 8, "yes_count": 3, "no_count": 4, "queue_count": 1, "low_count": 0, "yes_percent": 50.0}], "98": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 11, "yes_count": 6, "no_count": 5, "queue_count": 0, "low_count": 0, "yes_percent": 54.5}], "76": [], "77": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 17, "yes_count": 5, "no_count": 12, "queue_count": 0, "low_count": 0, "yes_percent": 29.4}], "6": [], "78": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 2, "yes_count": 2, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "79": [], "99": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 13, "yes_count": 6, "no_count": 5, "queue_count": 1, "low_count": 1, "yes_percent": 61.5}], "1": [], "80": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 70, "yes_count": 18, "no_count": 39, "queue_count": 10, "low_count": 3, "yes_percent": 44.3}], "100": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 1, "yes_count": 1, "no_count": 0, "queue_count": 0, "low_count": 0, "yes_percent": 100.0}], "101": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 29, "yes_count": 8, "no_count": 18, "queue_count": 2, "low_count": 1, "yes_percent": 37.9}], "81": [], "3": [], "82": [], "102": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 7, "yes_count": 4, "no_count": 1, "queue_count": 1, "low_count": 1, "yes_percent": 85.7}], "83": [{"timestamp": "2026-06-27 02:01:02.184436", "total_stations": 56, "yes_count": 9, "no_count": 39, "queue_count": 7, "low_count": 1, "yes_percent": 30.4}]};
             
             let dataToUse = russiaStats;
             if (regionId && allRegionStats[regionId]) {
