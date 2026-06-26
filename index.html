@@ -79,6 +79,29 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+        .alphabet-filter {
+            margin: 20px 0;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .alphabet-btn {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .alphabet-btn:hover {
+            background: #4CAF50;
+            color: white;
+        }
+        .alphabet-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
         .badge {
             padding: 3px 8px;
             border-radius: 12px;
@@ -117,6 +140,10 @@
         <h2>Поиск по городу</h2>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Введите название города..." onkeyup="filterTable()">
+        </div>
+        
+        <div class="alphabet-filter" id="alphabetFilter">
+            <button class="alphabet-btn active" onclick="filterByLetter('')">Все</button>
         </div>
         
         <h2>Статистика по городам</h2>
@@ -5112,18 +5139,67 @@
     </div>
     
     <script>
-        function filterTable() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("cityTable");
-            tr = table.getElementsByTagName("tr");
+        // Generate alphabet buttons
+        const russianAlphabet = 'АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ';
+        const alphabetFilter = document.getElementById('alphabetFilter');
+        
+        russianAlphabet.split('').forEach(letter => {
+            const btn = document.createElement('button');
+            btn.className = 'alphabet-btn';
+            btn.textContent = letter;
+            btn.onclick = () => filterByLetter(letter);
+            alphabetFilter.appendChild(btn);
+        });
+        
+        let currentLetter = '';
+        
+        function filterByLetter(letter) {
+            currentLetter = letter;
             
-            for (i = 1; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+            // Update active button state
+            document.querySelectorAll('.alphabet-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === letter || (letter === '' && btn.textContent === 'Все')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Filter table
+            const table = document.getElementById("cityTable");
+            const tr = table.getElementsByTagName("tr");
+            
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName("td")[0];
                 if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    const txtValue = td.textContent || td.innerText;
+                    const firstChar = txtValue.charAt(0).toUpperCase();
+                    
+                    if (letter === '' || firstChar === letter) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        
+        function filterTable() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toUpperCase();
+            const table = document.getElementById("cityTable");
+            const tr = table.getElementsByTagName("tr");
+            
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    const firstChar = txtValue.charAt(0).toUpperCase();
+                    
+                    // Apply both search and letter filter
+                    const matchesSearch = txtValue.toUpperCase().indexOf(filter) > -1;
+                    const matchesLetter = currentLetter === '' || firstChar === currentLetter;
+                    
+                    if (matchesSearch && matchesLetter) {
                         tr[i].style.display = "";
                     } else {
                         tr[i].style.display = "none";
