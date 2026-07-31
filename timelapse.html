@@ -82,9 +82,14 @@ tr:hover { background:#1a1d29; }
 let DATA = null;
 
 async function loadData() {
-  const resp = await fetch('presentation_data.json');
-  DATA = await resp.json();
-  init();
+  try {
+    const resp = await fetch('presentation_data.json?v=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    DATA = await resp.json();
+    init();
+  } catch(e) {
+    document.getElementById('period').textContent = 'Ошибка загрузки данных: ' + e.message;
+  }
 }
 
 function pctColor(pct) {
