@@ -66,11 +66,11 @@ tr:hover { background:#1a1d29; }
 <tr><th>Город</th><th>Регион</th><th class="num">Было (%)</th><th class="num">Стало (%)</th><th class="num">Изменение</th><th class="num">Снимков (было)</th><th class="num">Снимков (стало)</th></tr>
 </table>
 
-<h2>Город — динамика по дням</h2>
+<h2>Динамика по дням (ФО / Субъект / Город)</h2>
 <div class="controls">
   <select id="foFilter"><option value="">Все ФО</option></select>
   <select id="subjectFilter"><option value="">Все субъекты</option></select>
-  <select id="citySelect"></select>
+  <select id="citySelect"><option value="">Все города</option></select>
 </div>
 <div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
@@ -229,24 +229,46 @@ function init() {
     tbl.appendChild(tr);
   });
 
-  // City select with three-level filter: FO -> Subject -> City
+  // Three-level filter: FO -> Subject -> City, chart adapts to selection
   const foFilter = document.getElementById('foFilter');
   const subjectFilter = document.getElementById('subjectFilter');
   const citySelect = document.getElementById('citySelect');
   let cityChart = null;
 
-  function plotCity(city) {
-    const series = DATA.city_series[city];
-    if (!series) return;
+  function plotChart() {
+    var foVal = foFilter.value;
+    var subjVal = subjectFilter.value;
+    var cityVal = citySelect.value;
+    var series = null;
+    var label = '';
+
+    if (cityVal) {
+      series = DATA.city_series[cityVal];
+      label = cityVal;
+    } else if (subjVal) {
+      series = DATA.region_series[subjVal];
+      label = subjVal;
+    } else if (foVal) {
+      series = DATA.fo_series[foVal];
+      label = foVal;
+    } else {
+      series = DATA.russia_series;
+      label = 'Вся РФ';
+    }
+
+    if (!series) {
+      if (cityChart) cityChart.destroy();
+      return;
+    }
     if (cityChart) cityChart.destroy();
-    const ctx = document.getElementById('cityDailyChart').getContext('2d');
+    var ctx = document.getElementById('cityDailyChart').getContext('2d');
     cityChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: series.map(s => s.date),
+        labels: series.map(function(s) { return s.date; }),
         datasets: [{
-          label: city + ' — % с топливом',
-          data: series.map(s => s.pct),
+          label: label + ' — % с топливом',
+          data: series.map(function(s) { return s.pct; }),
           borderColor: '#e74c3c',
           backgroundColor: 'rgba(231,76,60,0.1)',
           fill: true, tension: 0.3, pointRadius: 3,
@@ -257,17 +279,17 @@ function init() {
         plugins: { legend: { labels: { color: '#ccc' } } },
         scales: {
           x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
-          y: { min:0, max:100, ticks: { color: '#888', callback: v => v+'%' }, grid: { color: '#222' } }
+          y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; } }, grid: { color: '#222' } }
         }
       }
     });
   }
 
-  const hierarchy = DATA.city_hierarchy || {};
+  var hierarchy = DATA.city_hierarchy || {};
 
   // Populate FO filter
-  Object.keys(hierarchy).sort().forEach(fo => {
-    const opt = document.createElement('option');
+  Object.keys(hierarchy).sort().forEach(function(fo) {
+    var opt = document.createElement('option');
     opt.value = fo; opt.textContent = fo;
     foFilter.appendChild(opt);
   });
@@ -275,8 +297,8 @@ function init() {
   function populateSubjects(foVal) {
     subjectFilter.innerHTML = '<option value="">Все субъекты</option>';
     if (foVal && hierarchy[foVal]) {
-      Object.keys(hierarchy[foVal]).sort().forEach(subj => {
-        const opt = document.createElement('option');
+      Object.keys(hierarchy[foVal]).sort().forEach(function(subj) {
+        var opt = document.createElement('option');
         opt.value = subj; opt.textContent = subj;
         subjectFilter.appendChild(opt);
       });
@@ -285,7 +307,7 @@ function init() {
   }
 
   function populateCities(foVal, subjVal) {
-    citySelect.innerHTML = '';
+    citySelect.innerHTML = '<option value="">Все города</option>';
     var cities = [];
     if (foVal && hierarchy[foVal]) {
       if (subjVal && hierarchy[foVal][subjVal]) {
@@ -307,15 +329,13 @@ function init() {
       opt.value = c; opt.textContent = c;
       citySelect.appendChild(opt);
     });
-    if (citySelect.options.length > 0) {
-      plotCity(citySelect.value);
-    }
+    plotChart();
   }
 
-  foFilter.addEventListener('change', () => populateSubjects(foFilter.value));
-  subjectFilter.addEventListener('change', () => populateCities(foFilter.value, subjectFilter.value));
-  citySelect.addEventListener('change', () => plotCity(citySelect.value));
-  populateCities('', '');
+  foFilter.addEventListener('change', function() { populateSubjects(foFilter.value); });
+  subjectFilter.addEventListener('change', function() { populateCities(foFilter.value, subjectFilter.value); });
+  citySelect.addEventListener('change', function() { plotChart(); });
+  plotChart();
 }
 
 loadData();
