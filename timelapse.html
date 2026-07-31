@@ -49,30 +49,21 @@ tr:hover { background:#1a1d29; }
 
 <div class="summary" id="summary"></div>
 
-<h2>Вся РФ — динамика % АЗС с топливом</h2>
-<div class="chart-box tall"><canvas id="russiaChart"></canvas></div>
-
 <h2>Регионы — было / стало</h2>
 <div class="chart-box tall"><canvas id="regionBeforeAfterChart"></canvas></div>
 
-<h2>Регионы — динамика по дням</h2>
+<h2>Динамика по дням (Вся РФ / ФО / Субъект / Город)</h2>
 <div class="controls">
-  <select id="regionSelect"></select>
+  <select id="foFilter"><option value="">Вся РФ</option></select>
+  <select id="subjectFilter"><option value="">Все субъекты</option></select>
+  <select id="citySelect"><option value="">Все города</option></select>
 </div>
-<div class="chart-box tall"><canvas id="regionDailyChart"></canvas></div>
+<div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
 <h2>Проблемные города — топ-30 (худшие сейчас)</h2>
 <table id="problemTable">
 <tr><th>Город</th><th>Регион</th><th class="num">Было (%)</th><th class="num">Стало (%)</th><th class="num">Изменение</th><th class="num">Снимков (было)</th><th class="num">Снимков (стало)</th></tr>
 </table>
-
-<h2>Динамика по дням (ФО / Субъект / Город)</h2>
-<div class="controls">
-  <select id="foFilter"><option value="">Все ФО</option></select>
-  <select id="subjectFilter"><option value="">Все субъекты</option></select>
-  <select id="citySelect"><option value="">Все города</option></select>
-</div>
-<div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
 <script>
 let DATA = null;
@@ -114,42 +105,6 @@ function init() {
     <div class="card orange"><div class="value">${avgPct}%</div><div class="label">Среднее за период</div></div>
   `;
 
-  // Russia chart
-  const russiaCtx = document.getElementById('russiaChart').getContext('2d');
-  new Chart(russiaCtx, {
-    type: 'line',
-    data: {
-      labels: rs.map(r => r.date),
-      datasets: [{
-        label: '% АЗС с топливом',
-        data: rs.map(r => r.pct),
-        borderColor: '#3498db',
-        backgroundColor: 'rgba(52,152,219,0.1)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 3,
-        pointColor: rs.map(r => pctColor(r.pct)),
-      }, {
-        label: 'Очередь (кол-во)',
-        data: rs.map(r => r.queue),
-        borderColor: '#f39c12',
-        yAxisID: 'y1',
-        fill: false,
-        tension: 0.3,
-        pointRadius: 2,
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#ccc' } } },
-      scales: {
-        x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
-        y: { min:0, max:100, ticks: { color: '#888', callback: v => v+'%' }, grid: { color: '#222' }, title: { display:true, text:'% с топливом', color:'#888' } },
-        y1: { position:'right', ticks: { color: '#888' }, grid: { drawOnChartArea:false }, title: { display:true, text:'Очередь', color:'#888' } }
-      }
-    }
-  });
-
   // Region before/after chart
   const rba = DATA.region_before_after;
   const rbaCtx = document.getElementById('regionBeforeAfterChart').getContext('2d');
@@ -176,44 +131,6 @@ function init() {
       }
     }
   });
-
-  // Region select
-  const regionSelect = document.getElementById('regionSelect');
-  Object.keys(DATA.region_series).sort().forEach(r => {
-    const opt = document.createElement('option');
-    opt.value = r; opt.textContent = r;
-    regionSelect.appendChild(opt);
-  });
-  let regionChart = null;
-  function plotRegion(region) {
-    const series = DATA.region_series[region];
-    if (!series) return;
-    if (regionChart) regionChart.destroy();
-    const ctx = document.getElementById('regionDailyChart').getContext('2d');
-    regionChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: series.map(s => s.date),
-        datasets: [{
-          label: region + ' — % с топливом',
-          data: series.map(s => s.pct),
-          borderColor: '#8ab4f8',
-          backgroundColor: 'rgba(138,180,248,0.1)',
-          fill: true, tension: 0.3, pointRadius: 3,
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#ccc' } } },
-        scales: {
-          x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
-          y: { min:0, max:100, ticks: { color: '#888', callback: v => v+'%' }, grid: { color: '#222' } }
-        }
-      }
-    });
-  }
-  regionSelect.addEventListener('change', () => plotRegion(regionSelect.value));
-  plotRegion(regionSelect.value);
 
   // Problem cities table
   const tbl = document.getElementById('problemTable');
@@ -269,9 +186,15 @@ function init() {
         datasets: [{
           label: label + ' — % с топливом',
           data: series.map(function(s) { return s.pct; }),
-          borderColor: '#e74c3c',
-          backgroundColor: 'rgba(231,76,60,0.1)',
+          borderColor: '#3498db',
+          backgroundColor: 'rgba(52,152,219,0.1)',
           fill: true, tension: 0.3, pointRadius: 3,
+        }, {
+          label: 'Очередь (кол-во)',
+          data: series.map(function(s) { return s.queue; }),
+          borderColor: '#f39c12',
+          yAxisID: 'y1',
+          fill: false, tension: 0.3, pointRadius: 2,
         }]
       },
       options: {
@@ -279,7 +202,8 @@ function init() {
         plugins: { legend: { labels: { color: '#ccc' } } },
         scales: {
           x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
-          y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; } }, grid: { color: '#222' } }
+          y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; } }, grid: { color: '#222' }, title: { display: true, text: '% с топливом', color: '#888' } },
+          y1: { position: 'right', ticks: { color: '#888' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Очередь', color: '#888' } }
         }
       }
     });
