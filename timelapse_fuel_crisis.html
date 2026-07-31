@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Топливный кризис — Таймлапс</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background:#0f1117; color:#e0e0e0; padding:20px; }
+h1 { color:#fff; font-size:28px; margin-bottom:4px; }
+h2 { color:#8ab4f8; font-size:22px; margin:30px 0 15px; border-bottom:1px solid #333; padding-bottom:8px; }
+.subtitle { color:#999; font-size:14px; margin-bottom:20px; }
+.controls { display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap; }
+.controls select, .controls button { background:#1a1d29; color:#e0e0e0; border:1px solid #333; border-radius:8px; padding:8px 14px; font-size:14px; cursor:pointer; }
+.controls select:hover, .controls button:hover { border-color:#8ab4f8; }
+.chart-box { background:#1a1d29; border-radius:12px; padding:20px; margin-bottom:20px; border:1px solid #2a2d3a; position:relative; height:400px; }
+.chart-box.tall { height:500px; }
+.summary { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-bottom:20px; }
+.card { background:#1a1d29; border-radius:12px; padding:16px; text-align:center; border:1px solid #2a2d3a; }
+.card .value { font-size:28px; font-weight:700; color:#fff; }
+.card .label { font-size:12px; color:#888; margin-top:4px; }
+.card.green .value { color:#27ae60; }
+.card.red .value { color:#e74c3c; }
+.card.orange .value { color:#f39c12; }
+.card.blue .value { color:#3498db; }
+table { width:100%; border-collapse:collapse; font-size:14px; margin-bottom:20px; }
+th { background:#1a1d29; padding:10px 12px; text-align:left; color:#8ab4f8; font-weight:600; border-bottom:2px solid #333; position:sticky; top:0; }
+td { padding:8px 12px; border-bottom:1px solid #222; }
+tr:hover { background:#1a1d29; }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+.badge { padding:3px 8px; border-radius:6px; color:#fff; font-weight:600; font-size:13px; }
+.badge.red { background:#e74c3c; }
+.badge.orange { background:#f39c12; }
+.badge.green { background:#27ae60; }
+.delta-pos { color:#27ae60; font-weight:600; }
+.delta-neg { color:#e74c3c; font-weight:600; }
+.tabs { display:flex; gap:4px; margin-bottom:15px; flex-wrap:wrap; }
+.tab { padding:8px 16px; background:#1a1d29; border:1px solid #333; border-radius:8px 8px 0 0; cursor:pointer; font-size:14px; color:#888; }
+.tab.active { background:#0f1117; border-bottom:2px solid #8ab4f8; color:#8ab4f8; }
+.hidden { display:none; }
+.loading { text-align:center; padding:40px; color:#888; }
+</style>
+</head>
+<body>
+
+<h1>Топливный кризис — Таймлапс</h1>
+<p class="subtitle" id="period">Загрузка...</p>
+
+<div class="summary" id="summary"></div>
+
+<h2>Динамика по дням (Вся РФ / ФО / Субъект / Город)</h2>
+<div class="controls">
+  <select id="foFilter"><option value="">Вся РФ</option></select>
+  <select id="subjectFilter"><option value="">Все субъекты</option></select>
+  <select id="citySelect"><option value="">Все города</option></select>
+</div>
+<div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
+
+<h2>Области — было / стало</h2>
+<div class="chart-box tall"><canvas id="regionBeforeAfterChart"></canvas></div>
+
+<h2>Проблемные города — топ-30 (худшие сейчас)</h2>
+<table id="problemTable">
+<tr><th>Город</th><th>Регион</th><th class="num">Было (%)</th><th class="num">Стало (%)</th><th class="num">Изменение</th><th class="num">Снимков (было)</th><th class="num">Снимков (стало)</th></tr>
+</table>
+
+<script>
+let DATA = null;
+
+async function loadData() {
+  try {
+    const resp = await fetch('presentation_data.json?v=' + Date.now());
+    if (resp.status !== 200) throw new Error('HTTP ' + resp.status);
+    DATA = await resp.json();
+    init();
+  } catch(e) {
+    document.getElementById('period').textContent = 'Ошибка загрузки данных: ' + e.message;
+  }
+}
+
+function pctColor(pct) {
+  if (pct < 40) return '#e74c3c';
+  if (pct < 60) return '#f39c12';
+  return '#27ae60';
+}
+
+function init() {
+  const p = DATA.period;
+  document.getElementById('period').textContent = `Период: ${p.start} → ${p.end} · "Было": ${p.start} – ${p.first_week_end} · "Стало": ${p.last_week_start} – ${p.end}`;
+
+  // Summary cards
+  const rs = DATA.russia_series;
+  const firstPct = rs[0]?.pct || 0;
+  const lastPct = rs[rs.length-1]?.pct || 0;
+  const minPct = Math.min(...rs.map(r => r.pct));
+  const maxPct = Math.max(...rs.map(r => r.pct));
+  const avgPct = (rs.reduce((a,r) => a+r.pct, 0) / rs.length).toFixed(1);
+
+  document.getElementById('summary').innerHTML = `
+    <div class="card blue"><div class="value">${firstPct}%</div><div class="label">Было (первый день)</div></div>
+    <div class="card ${lastPct<40?'red':lastPct<60?'orange':'green'}"><div class="value">${lastPct}%</div><div class="label">Стало (последний день)</div></div>
+    <div class="card red"><div class="value">${minPct}%</div><div class="label">Минимум за период</div></div>
+    <div class="card green"><div class="value">${maxPct}%</div><div class="label">Максимум за период</div></div>
+    <div class="card orange"><div class="value">${avgPct}%</div><div class="label">Среднее за период</div></div>
+  `;
+
+  // Region before/after chart
+  const rba = DATA.region_before_after;
+  const rbaCtx = document.getElementById('regionBeforeAfterChart').getContext('2d');
+  new Chart(rbaCtx, {
+    type: 'bar',
+    data: {
+      labels: rba.map(r => r.region),
+      datasets: [{
+        label: 'Было (%)',
+        data: rba.map(r => r.before_pct),
+        backgroundColor: rba.map(r => pctColor(r.before_pct)),
+      }, {
+        label: 'Стало (%)',
+        data: rba.map(r => r.after_pct),
+        backgroundColor: rba.map(r => pctColor(r.after_pct)),
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#ccc' } } },
+      scales: {
+        x: { ticks: { color: '#888', maxRotation:90, minRotation:45, font:{size:10} }, grid: { color: '#222' } },
+        y: { min:0, max:100, ticks: { color: '#888', callback: v => v+'%' }, grid: { color: '#222' } }
+      }
+    }
+  });
+
+  // Problem cities table
+  const tbl = document.getElementById('problemTable');
+  DATA.problem_cities.slice(0, 30).forEach(c => {
+    const tr = document.createElement('tr');
+    const deltaCls = c.delta > 0 ? 'delta-pos' : c.delta < 0 ? 'delta-neg' : '';
+    const deltaStr = c.delta > 0 ? `+${c.delta}%` : `${c.delta}%`;
+    tr.innerHTML = `<td>${c.city}</td><td>${c.region}</td>
+      <td class="num"><span class="badge ${c.before_pct<40?'red':c.before_pct<60?'orange':'green'}">${c.before_pct}%</span></td>
+      <td class="num"><span class="badge ${c.after_pct<40?'red':c.after_pct<60?'orange':'green'}">${c.after_pct}%</span></td>
+      <td class="num ${deltaCls}">${deltaStr}</td>
+      <td class="num">${c.before_total}</td><td class="num">${c.after_total}</td>`;
+    tbl.appendChild(tr);
+  });
+
+  // Three-level filter: FO -> Subject -> City, chart adapts to selection
+  const foFilter = document.getElementById('foFilter');
+  const subjectFilter = document.getElementById('subjectFilter');
+  const citySelect = document.getElementById('citySelect');
+  let cityChart = null;
+
+  function plotChart() {
+    var foVal = foFilter.value;
+    var subjVal = subjectFilter.value;
+    var cityVal = citySelect.value;
+    var series = null;
+    var label = '';
+
+    if (cityVal) {
+      series = DATA.city_series[cityVal];
+      label = cityVal;
+    } else if (subjVal) {
+      series = DATA.region_series[subjVal];
+      label = subjVal;
+    } else if (foVal) {
+      series = DATA.fo_series[foVal];
+      label = foVal;
+    } else {
+      series = DATA.russia_series;
+      label = 'Вся РФ';
+    }
+
+    if (!series) {
+      if (cityChart) cityChart.destroy();
+      return;
+    }
+    if (cityChart) cityChart.destroy();
+    var ctx = document.getElementById('cityDailyChart').getContext('2d');
+
+    // Build price datasets aligned to series dates
+    var priceData = DATA.price_series || {};
+    var seriesDates = series.map(function(s) { return s.date; });
+    var priceDatasets = [];
+    var fuelColors = {'92': '#e74c3c', '95': '#9b59b6', 'ДТ': '#1abc9c', '100': '#e67e22', '98': '#34495e'};
+    Object.keys(priceData).forEach(function(fuel) {
+      var pmap = {};
+      priceData[fuel].forEach(function(p) { pmap[p.date] = p.price; });
+      priceDatasets.push({
+        label: 'Цена ' + fuel + ' (руб/л)',
+        data: seriesDates.map(function(d) { return pmap[d] || null; }),
+        borderColor: fuelColors[fuel] || '#888',
+        yAxisID: 'y2',
+        fill: false, tension: 0.3, pointRadius: 3,
+        spanGaps: true,
+      });
+    });
+
+    cityChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: seriesDates,
+        datasets: [{
+          label: label + ' — % с топливом',
+          data: series.map(function(s) { return s.pct; }),
+          borderColor: '#3498db',
+          backgroundColor: 'rgba(52,152,219,0.1)',
+          fill: true, tension: 0.3, pointRadius: 3,
+        }, {
+          label: 'Очередь (кол-во)',
+          data: series.map(function(s) { return s.queue; }),
+          borderColor: '#f39c12',
+          yAxisID: 'y1',
+          fill: false, tension: 0.3, pointRadius: 2,
+        }].concat(priceDatasets)
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: '#ccc' } } },
+        scales: {
+          x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
+          y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; } }, grid: { color: '#222' }, title: { display: true, text: '% с топливом', color: '#888' } },
+          y1: { position: 'right', ticks: { color: '#888' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Очередь', color: '#888' } },
+          y2: { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + '₽'; } }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true }
+        }
+      }
+    });
+  }
+
+  var hierarchy = DATA.city_hierarchy || {};
+
+  // Populate FO filter
+  Object.keys(hierarchy).sort().forEach(function(fo) {
+    var opt = document.createElement('option');
+    opt.value = fo; opt.textContent = fo;
+    foFilter.appendChild(opt);
+  });
+
+  function populateSubjects(foVal) {
+    subjectFilter.innerHTML = '<option value="">Все субъекты</option>';
+    if (foVal && hierarchy[foVal]) {
+      // FO selected - show subjects in that FO
+      Object.keys(hierarchy[foVal]).sort().forEach(function(subj) {
+        var opt = document.createElement('option');
+        opt.value = subj; opt.textContent = subj;
+        subjectFilter.appendChild(opt);
+      });
+    } else {
+      // No FO selected - show ALL subjects from all FOs
+      var allSubj = {};
+      Object.keys(hierarchy).forEach(function(fo) {
+        Object.keys(hierarchy[fo]).forEach(function(subj) {
+          allSubj[subj] = true;
+        });
+      });
+      Object.keys(allSubj).sort().forEach(function(subj) {
+        var opt = document.createElement('option');
+        opt.value = subj; opt.textContent = subj;
+        subjectFilter.appendChild(opt);
+      });
+    }
+    populateCities(foVal, '');
+  }
+
+  function populateCities(foVal, subjVal) {
+    citySelect.innerHTML = '<option value="">Все города</option>';
+    var cities = [];
+    if (subjVal) {
+      // Subject selected - find cities for this subject (across all FOs if needed)
+      if (foVal && hierarchy[foVal] && hierarchy[foVal][subjVal]) {
+        cities = cities.concat(hierarchy[foVal][subjVal]);
+      } else {
+        // Search subject in all FOs
+        Object.keys(hierarchy).forEach(function(fo) {
+          if (hierarchy[fo][subjVal]) {
+            cities = cities.concat(hierarchy[fo][subjVal]);
+          }
+        });
+      }
+    } else if (foVal && hierarchy[foVal]) {
+      // Only FO selected - all cities in FO
+      Object.keys(hierarchy[foVal]).forEach(function(subj) {
+        cities = cities.concat(hierarchy[foVal][subj]);
+      });
+    } else {
+      // Nothing selected - all cities
+      Object.keys(hierarchy).forEach(function(fo) {
+        Object.keys(hierarchy[fo]).forEach(function(subj) {
+          cities = cities.concat(hierarchy[fo][subj]);
+        });
+      });
+    }
+    cities.sort().forEach(function(c) {
+      var opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      citySelect.appendChild(opt);
+    });
+    plotChart();
+  }
+
+  foFilter.addEventListener('change', function() { populateSubjects(foFilter.value); });
+  subjectFilter.addEventListener('change', function() { populateCities(foFilter.value, subjectFilter.value); });
+  citySelect.addEventListener('change', function() { plotChart(); });
+  populateSubjects('');
+}
+
+loadData();
+</script>
+</body>
+</html>
