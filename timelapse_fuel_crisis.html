@@ -47,6 +47,40 @@ tr:hover { background:#1a1d29; }
 .toggle input:checked + .slider { background:#2c5f8f; }
 .toggle input:checked + .slider:after { left:20px; background:#3498db; }
 .toggle .label { color:#888; font-size:14px; user-select:none; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  body { padding:10px; }
+  h1 { font-size:20px; }
+  h2 { font-size:17px; margin:20px 0 10px; }
+  .subtitle { font-size:12px; margin-bottom:12px; }
+  .controls { flex-direction:column; gap:8px; }
+  .controls select { width:100%; padding:10px 12px; font-size:15px; }
+  .toggle { margin-left:0; align-self:flex-start; }
+  .chart-box { padding:10px; height:300px; }
+  .chart-box.tall { height:350px; }
+  .summary { grid-template-columns:repeat(2,1fr); gap:8px; }
+  .card { padding:10px; }
+  .card .value { font-size:20px; }
+  .card .label { font-size:10px; }
+  table { font-size:12px; }
+  th, td { padding:6px 8px; }
+  th { font-size:11px; }
+  .badge { font-size:11px; padding:2px 6px; }
+  /* Horizontal scroll for table */
+  .table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size:18px; }
+  h2 { font-size:15px; }
+  .summary { grid-template-columns:repeat(2,1fr); }
+  .chart-box { height:260px; }
+  .chart-box.tall { height:300px; }
+  .card .value { font-size:18px; }
+  table { font-size:11px; }
+  th, td { padding:4px 6px; }
+}
 </style>
 </head>
 <body>
@@ -69,9 +103,11 @@ tr:hover { background:#1a1d29; }
 <div class="chart-box tall"><canvas id="regionBeforeAfterChart"></canvas></div>
 
 <h2>Проблемные города — топ-30 (худшие сейчас)</h2>
+<div class="table-wrap">
 <table id="problemTable">
 <tr><th>Город</th><th>Регион</th><th class="num">Было (%)</th><th class="num">Стало (%)</th><th class="num">Изменение</th><th class="num">Снимков (было)</th><th class="num">Снимков (стало)</th></tr>
 </table>
+</div>
 
 <script>
 let DATA = null;
@@ -132,10 +168,10 @@ function init() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#ccc' } } },
+      plugins: { legend: { labels: { color: '#ccc', boxWidth: 12, font: { size: window.innerWidth < 768 ? 10 : 12 } } } },
       scales: {
-        x: { ticks: { color: '#888', maxRotation:90, minRotation:45, font:{size:10} }, grid: { color: '#222' } },
-        y: { min:0, max:100, ticks: { color: '#888', callback: v => v+'%' }, grid: { color: '#222' } }
+        x: { ticks: { color: '#888', maxRotation:90, minRotation:45, autoSkip: true, maxTicksLimit: window.innerWidth < 480 ? 15 : 30, font:{size: window.innerWidth < 768 ? 8 : 10} }, grid: { color: '#222' } },
+        y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v+'%'; }, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { color: '#222' } }
       }
     }
   });
@@ -229,12 +265,12 @@ function init() {
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: '#ccc' } } },
+        plugins: { legend: { labels: { color: '#ccc', boxWidth: 12, font: { size: window.innerWidth < 768 ? 10 : 12 } } } },
         scales: {
-          x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
-          y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; } }, grid: { color: '#222' }, title: { display: true, text: '% с топливом', color: '#888' } },
-          y1: { position: 'right', ticks: { color: '#888' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Очередь', color: '#888' } },
-          y2: showPricesToggle.checked ? { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + ' руб'; } }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true } : { display: false }
+          x: { ticks: { color: '#888', maxRotation:45, autoSkip: true, maxTicksLimit: window.innerWidth < 480 ? 5 : 12, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { color: '#222' } },
+          y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; }, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { color: '#222' }, title: { display: window.innerWidth >= 768, text: '% с топливом', color: '#888' } },
+          y1: { position: 'right', ticks: { color: '#888', font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { drawOnChartArea: false }, title: { display: window.innerWidth >= 768, text: 'Очередь', color: '#888' } },
+          y2: showPricesToggle.checked ? { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + ' руб'; }, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { drawOnChartArea: false }, title: { display: window.innerWidth >= 768, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true } : { display: false }
         }
       }
     });
