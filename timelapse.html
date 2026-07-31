@@ -66,9 +66,6 @@ tr:hover { background:#1a1d29; }
 <tr><th>Город</th><th>Регион</th><th class="num">Было (%)</th><th class="num">Стало (%)</th><th class="num">Изменение</th><th class="num">Снимков (было)</th><th class="num">Снимков (стало)</th></tr>
 </table>
 
-<h2>Города с наибольшим улучшением</h2>
-<div class="chart-box tall"><canvas id="improvedCitiesChart"></canvas></div>
-
 <h2>Город — динамика по дням</h2>
 <div class="controls">
   <select id="citySelect"></select>
@@ -228,34 +225,6 @@ function init() {
       <td class="num ${deltaCls}">${deltaStr}</td>
       <td class="num">${c.before_total}</td><td class="num">${c.after_total}</td>`;
     tbl.appendChild(tr);
-  });
-
-  // Improved cities chart
-  const ic = DATA.improved_cities.slice(0, 20);
-  const icCtx = document.getElementById('improvedCitiesChart').getContext('2d');
-  new Chart(icCtx, {
-    type: 'bar',
-    data: {
-      labels: ic.map(c => c.city),
-      datasets: [{
-        label: 'Было (%)',
-        data: ic.map(c => c.before_pct),
-        backgroundColor: ic.map(c => pctColor(c.before_pct)),
-      }, {
-        label: 'Стало (%)',
-        data: ic.map(c => c.after_pct),
-        backgroundColor: ic.map(c => pctColor(c.after_pct)),
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#ccc' } } },
-      scales: {
-        x: { min:0, max:100, ticks: { color: '#888', callback: v => v+'%' }, grid: { color: '#222' } },
-        y: { ticks: { color: '#ccc', font:{size:11} }, grid: { color: '#222' } }
-      }
-    }
   });
 
   // City select
