@@ -179,10 +179,29 @@ function init() {
     }
     if (cityChart) cityChart.destroy();
     var ctx = document.getElementById('cityDailyChart').getContext('2d');
+
+    // Build price datasets aligned to series dates
+    var priceData = DATA.price_series || {};
+    var seriesDates = series.map(function(s) { return s.date; });
+    var priceDatasets = [];
+    var fuelColors = {'92': '#e74c3c', '95': '#9b59b6', 'ДТ': '#1abc9c', '100': '#e67e22', '98': '#34495e'};
+    Object.keys(priceData).forEach(function(fuel) {
+      var pmap = {};
+      priceData[fuel].forEach(function(p) { pmap[p.date] = p.price; });
+      priceDatasets.push({
+        label: 'Цена ' + fuel + ' (руб/л)',
+        data: seriesDates.map(function(d) { return pmap[d] || null; }),
+        borderColor: fuelColors[fuel] || '#888',
+        yAxisID: 'y2',
+        fill: false, tension: 0.3, pointRadius: 3,
+        spanGaps: true,
+      });
+    });
+
     cityChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: series.map(function(s) { return s.date; }),
+        labels: seriesDates,
         datasets: [{
           label: label + ' — % с топливом',
           data: series.map(function(s) { return s.pct; }),
@@ -195,7 +214,7 @@ function init() {
           borderColor: '#f39c12',
           yAxisID: 'y1',
           fill: false, tension: 0.3, pointRadius: 2,
-        }]
+        }].concat(priceDatasets)
       },
       options: {
         responsive: true, maintainAspectRatio: false,
@@ -203,7 +222,8 @@ function init() {
         scales: {
           x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
           y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; } }, grid: { color: '#222' }, title: { display: true, text: '% с топливом', color: '#888' } },
-          y1: { position: 'right', ticks: { color: '#888' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Очередь', color: '#888' } }
+          y1: { position: 'right', ticks: { color: '#888' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Очередь', color: '#888' } },
+          y2: { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + '₽'; } }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true }
         }
       }
     });
