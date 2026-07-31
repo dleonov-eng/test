@@ -68,7 +68,8 @@ tr:hover { background:#1a1d29; }
 
 <h2>Город — динамика по дням</h2>
 <div class="controls">
-  <select id="regionFilter"><option value="">Все регионы</option></select>
+  <select id="foFilter"><option value="">Все ФО</option></select>
+  <select id="subjectFilter"><option value="">Все субъекты</option></select>
   <select id="citySelect"></select>
 </div>
 <div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
@@ -228,9 +229,10 @@ function init() {
     tbl.appendChild(tr);
   });
 
-  // City select with region filter
+  // City select with three-level filter: FO -> Subject -> City
+  const foFilter = document.getElementById('foFilter');
+  const subjectFilter = document.getElementById('subjectFilter');
   const citySelect = document.getElementById('citySelect');
-  const regionFilter = document.getElementById('regionFilter');
   let cityChart = null;
 
   function plotCity(city) {
@@ -261,24 +263,44 @@ function init() {
     });
   }
 
-  // Build region->cities mapping
-  const cityRegions = DATA.city_to_region || {};
+  const hierarchy = DATA.city_hierarchy || {};
 
-  // Populate region filter - only from city_to_region to ensure matching
-  const allRegions = new Set(Object.values(cityRegions).filter(Boolean()));
-  Array.from(allRegions).sort().forEach(r => {
+  // Populate FO filter
+  Object.keys(hierarchy).sort().forEach(fo => {
     const opt = document.createElement('option');
-    opt.value = r; opt.textContent = r;
-    regionFilter.appendChild(opt);
+    opt.value = fo; opt.textContent = fo;
+    foFilter.appendChild(opt);
   });
 
-  function populateCities(regionVal) {
+  function populateSubjects(foVal) {
+    subjectFilter.innerHTML = '<option value="">Все субъекты</option>';
+    if (foVal && hierarchy[foVal]) {
+      Object.keys(hierarchy[foVal]).sort().forEach(subj => {
+        const opt = document.createElement('option');
+        opt.value = subj; opt.textContent = subj;
+        subjectFilter.appendChild(opt);
+      });
+    }
+    populateCities(foVal, '');
+  }
+
+  function populateCities(foVal, subjVal) {
     citySelect.innerHTML = '';
-    Object.keys(DATA.city_series).sort().forEach(c => {
-      const cityRegion = cityRegions[c] || '';
-      if (regionVal && cityRegion !== regionVal) return;
+    const cities = [];
+    if (foVal && hierarchy[foVal]) {
+      if (subjVal && hierarchy[foVal][subjVal]) {
+        cities.push(...hierarchy[foVal][subjVal]);
+      } else {
+        Object.values(hierarchy[foVal]).forEach(arr => cities.push(...arr));
+      }
+    } else {
+      Object.values(hierarchy).forEach(subjs => {
+        Object.values(subjs).forEach(arr => cities.push(...arr));
+      });
+    }
+    cities.sort().forEach(c => {
       const opt = document.createElement('option');
-      opt.value = c; opt.textContent = c + (cityRegion ? ' (' + cityRegion + ')' : '');
+      opt.value = c; opt.textContent = c;
       citySelect.appendChild(opt);
     });
     if (citySelect.options.length > 0) {
@@ -286,9 +308,10 @@ function init() {
     }
   }
 
-  regionFilter.addEventListener('change', () => populateCities(regionFilter.value));
+  foFilter.addEventListener('change', () => populateSubjects(foFilter.value));
+  subjectFilter.addEventListener('change', () => populateCities(foFilter.value, subjectFilter.value));
   citySelect.addEventListener('change', () => plotCity(citySelect.value));
-  populateCities('');
+  populateCities('', '');
 }
 
 loadData();
