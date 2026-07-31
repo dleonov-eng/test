@@ -264,8 +264,8 @@ function init() {
   // Build region->cities mapping
   const cityRegions = DATA.city_to_region || {};
 
-  // Populate region filter
-  const allRegions = new Set([...DATA.region_before_after.map(r => r.region), ...Object.values(cityRegions)].filter(Boolean()));
+  // Populate region filter - only from city_to_region to ensure matching
+  const allRegions = new Set(Object.values(cityRegions).filter(Boolean()));
   Array.from(allRegions).sort().forEach(r => {
     const opt = document.createElement('option');
     opt.value = r; opt.textContent = r;
