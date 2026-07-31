@@ -283,7 +283,7 @@ function init() {
   foFilter.addEventListener('change', function() { populateSubjects(foFilter.value); });
   subjectFilter.addEventListener('change', function() { populateCities(foFilter.value, subjectFilter.value); });
   citySelect.addEventListener('change', function() { plotChart(); });
-  plotChart();
+  populateSubjects('');
 }
 
 loadData();
