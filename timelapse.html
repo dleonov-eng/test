@@ -221,7 +221,21 @@ function init() {
   function populateSubjects(foVal) {
     subjectFilter.innerHTML = '<option value="">Все субъекты</option>';
     if (foVal && hierarchy[foVal]) {
+      // FO selected - show subjects in that FO
       Object.keys(hierarchy[foVal]).sort().forEach(function(subj) {
+        var opt = document.createElement('option');
+        opt.value = subj; opt.textContent = subj;
+        subjectFilter.appendChild(opt);
+      });
+    } else {
+      // No FO selected - show ALL subjects from all FOs
+      var allSubj = {};
+      Object.keys(hierarchy).forEach(function(fo) {
+        Object.keys(hierarchy[fo]).forEach(function(subj) {
+          allSubj[subj] = true;
+        });
+      });
+      Object.keys(allSubj).sort().forEach(function(subj) {
         var opt = document.createElement('option');
         opt.value = subj; opt.textContent = subj;
         subjectFilter.appendChild(opt);
@@ -233,15 +247,25 @@ function init() {
   function populateCities(foVal, subjVal) {
     citySelect.innerHTML = '<option value="">Все города</option>';
     var cities = [];
-    if (foVal && hierarchy[foVal]) {
-      if (subjVal && hierarchy[foVal][subjVal]) {
+    if (subjVal) {
+      // Subject selected - find cities for this subject (across all FOs if needed)
+      if (foVal && hierarchy[foVal] && hierarchy[foVal][subjVal]) {
         cities = cities.concat(hierarchy[foVal][subjVal]);
       } else {
-        Object.keys(hierarchy[foVal]).forEach(function(subj) {
-          cities = cities.concat(hierarchy[foVal][subj]);
+        // Search subject in all FOs
+        Object.keys(hierarchy).forEach(function(fo) {
+          if (hierarchy[fo][subjVal]) {
+            cities = cities.concat(hierarchy[fo][subjVal]);
+          }
         });
       }
+    } else if (foVal && hierarchy[foVal]) {
+      // Only FO selected - all cities in FO
+      Object.keys(hierarchy[foVal]).forEach(function(subj) {
+        cities = cities.concat(hierarchy[foVal][subj]);
+      });
     } else {
+      // Nothing selected - all cities
       Object.keys(hierarchy).forEach(function(fo) {
         Object.keys(hierarchy[fo]).forEach(function(subj) {
           cities = cities.concat(hierarchy[fo][subj]);
