@@ -61,9 +61,6 @@ tr:hover { background:#1a1d29; }
 </div>
 <div class="chart-box tall"><canvas id="regionDailyChart"></canvas></div>
 
-<h2>Проблемные города — тогда и сейчас</h2>
-<div class="chart-box tall"><canvas id="problemCitiesChart"></canvas></div>
-
 <h2>Проблемные города — топ-30 (худшие сейчас)</h2>
 <table id="problemTable">
 <tr><th>Город</th><th>Регион</th><th class="num">Было (%)</th><th class="num">Стало (%)</th><th class="num">Изменение</th><th class="num">Снимков (было)</th><th class="num">Снимков (стало)</th></tr>
@@ -218,34 +215,6 @@ function init() {
   }
   regionSelect.addEventListener('change', () => plotRegion(regionSelect.value));
   plotRegion(regionSelect.value);
-
-  // Problem cities chart
-  const pc = DATA.problem_cities.slice(0, 25);
-  const pcCtx = document.getElementById('problemCitiesChart').getContext('2d');
-  new Chart(pcCtx, {
-    type: 'bar',
-    data: {
-      labels: pc.map(c => c.city),
-      datasets: [{
-        label: 'Было (%)',
-        data: pc.map(c => c.before_pct),
-        backgroundColor: pc.map(c => pctColor(c.before_pct)),
-      }, {
-        label: 'Стало (%)',
-        data: pc.map(c => c.after_pct),
-        backgroundColor: pc.map(c => pctColor(c.after_pct)),
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#ccc' } } },
-      scales: {
-        x: { min:0, max:100, ticks: { color: '#888', callback: v => v+'%' }, grid: { color: '#222' } },
-        y: { ticks: { color: '#ccc', font:{size:11} }, grid: { color: '#222' } }
-      }
-    }
-  });
 
   // Problem cities table
   const tbl = document.getElementById('problemTable');
