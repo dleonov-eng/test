@@ -80,7 +80,7 @@ let DATA = null;
 async function loadData() {
   try {
     const resp = await fetch('presentation_data.json?v=' + Date.now());
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    if (resp.status !== 200) throw new Error('HTTP ' + resp.status);
     DATA = await resp.json();
     init();
   } catch(e) {
@@ -286,20 +286,24 @@ function init() {
 
   function populateCities(foVal, subjVal) {
     citySelect.innerHTML = '';
-    const cities = [];
+    var cities = [];
     if (foVal && hierarchy[foVal]) {
       if (subjVal && hierarchy[foVal][subjVal]) {
-        cities.push(...hierarchy[foVal][subjVal]);
+        cities = cities.concat(hierarchy[foVal][subjVal]);
       } else {
-        Object.values(hierarchy[foVal]).forEach(arr => cities.push(...arr));
+        Object.keys(hierarchy[foVal]).forEach(function(subj) {
+          cities = cities.concat(hierarchy[foVal][subj]);
+        });
       }
     } else {
-      Object.values(hierarchy).forEach(subjs => {
-        Object.values(subjs).forEach(arr => cities.push(...arr));
+      Object.keys(hierarchy).forEach(function(fo) {
+        Object.keys(hierarchy[fo]).forEach(function(subj) {
+          cities = cities.concat(hierarchy[fo][subj]);
+        });
       });
     }
-    cities.sort().forEach(c => {
-      const opt = document.createElement('option');
+    cities.sort().forEach(function(c) {
+      var opt = document.createElement('option');
       opt.value = c; opt.textContent = c;
       citySelect.appendChild(opt);
     });
