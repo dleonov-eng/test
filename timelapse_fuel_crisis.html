@@ -40,6 +40,13 @@ tr:hover { background:#1a1d29; }
 .tab.active { background:#0f1117; border-bottom:2px solid #8ab4f8; color:#8ab4f8; }
 .hidden { display:none; }
 .loading { text-align:center; padding:40px; color:#888; }
+.toggle { display:inline-flex; align-items:center; gap:8px; margin-left:12px; }
+.toggle input { display:none; }
+.toggle .slider { width:40px; height:22px; background:#333; border-radius:11px; position:relative; cursor:pointer; transition:background 0.2s; }
+.toggle .slider:after { content:''; position:absolute; top:2px; left:2px; width:18px; height:18px; background:#888; border-radius:50%; transition:0.2s; }
+.toggle input:checked + .slider { background:#2c5f8f; }
+.toggle input:checked + .slider:after { left:20px; background:#3498db; }
+.toggle .label { color:#888; font-size:14px; user-select:none; }
 </style>
 </head>
 <body>
@@ -54,6 +61,7 @@ tr:hover { background:#1a1d29; }
   <select id="foFilter"><option value="">Вся РФ</option></select>
   <select id="subjectFilter"><option value="">Все субъекты</option></select>
   <select id="citySelect"><option value="">Все города</option></select>
+  <label class="toggle"><input type="checkbox" id="showPrices"><span class="slider"></span><span class="label">Цены</span></label>
 </div>
 <div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
@@ -150,6 +158,7 @@ function init() {
   const foFilter = document.getElementById('foFilter');
   const subjectFilter = document.getElementById('subjectFilter');
   const citySelect = document.getElementById('citySelect');
+  const showPricesToggle = document.getElementById('showPrices');
   let cityChart = null;
 
   function plotChart() {
@@ -179,24 +188,26 @@ function init() {
     }
     if (cityChart) cityChart.destroy();
     var ctx = document.getElementById('cityDailyChart').getContext('2d');
-
-    // Build price datasets aligned to series dates
-    var priceData = DATA.price_series || {};
     var seriesDates = series.map(function(s) { return s.date; });
+
+    // Build price datasets aligned to series dates (only if toggle is on)
     var priceDatasets = [];
-    var fuelColors = {'92': '#e74c3c', '95': '#9b59b6', 'ДТ': '#1abc9c', '100': '#e67e22', '98': '#34495e'};
-    Object.keys(priceData).forEach(function(fuel) {
-      var pmap = {};
-      priceData[fuel].forEach(function(p) { pmap[p.date] = p.price; });
-      priceDatasets.push({
-        label: 'Цена ' + fuel + ' (руб/л)',
-        data: seriesDates.map(function(d) { return pmap[d] || null; }),
-        borderColor: fuelColors[fuel] || '#888',
-        yAxisID: 'y2',
-        fill: false, tension: 0.3, pointRadius: 3,
-        spanGaps: true,
+    if (showPricesToggle.checked) {
+      var priceData = DATA.price_series || {};
+      var fuelColors = {'92': '#e74c3c', '95': '#9b59b6', 'ДТ': '#1abc9c', '100': '#e67e22', '98': '#34495e'};
+      Object.keys(priceData).forEach(function(fuel) {
+        var pmap = {};
+        priceData[fuel].forEach(function(p) { pmap[p.date] = p.price; });
+        priceDatasets.push({
+          label: 'Цена ' + fuel + ' (руб/л)',
+          data: seriesDates.map(function(d) { return pmap[d] || null; }),
+          borderColor: fuelColors[fuel] || '#888',
+          yAxisID: 'y2',
+          fill: false, tension: 0.3, pointRadius: 3,
+          spanGaps: true,
+        });
       });
-    });
+    }
 
     cityChart = new Chart(ctx, {
       type: 'line',
@@ -223,7 +234,7 @@ function init() {
           x: { ticks: { color: '#888', maxRotation:45 }, grid: { color: '#222' } },
           y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; } }, grid: { color: '#222' }, title: { display: true, text: '% с топливом', color: '#888' } },
           y1: { position: 'right', ticks: { color: '#888' }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Очередь', color: '#888' } },
-          y2: { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + '₽'; } }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true }
+          y2: showPricesToggle.checked ? { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + ' руб'; } }, grid: { drawOnChartArea: false }, title: { display: true, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true } : { display: false }
         }
       }
     });
@@ -303,6 +314,7 @@ function init() {
   foFilter.addEventListener('change', function() { populateSubjects(foFilter.value); });
   subjectFilter.addEventListener('change', function() { populateCities(foFilter.value, subjectFilter.value); });
   citySelect.addEventListener('change', function() { plotChart(); });
+  showPricesToggle.addEventListener('change', function() { plotChart(); });
   populateSubjects('');
 }
 
