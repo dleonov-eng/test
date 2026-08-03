@@ -229,11 +229,27 @@ function init() {
     // Build price datasets aligned to series dates (only if toggle is on)
     var priceDatasets = [];
     if (showPricesToggle.checked) {
-      var priceData = DATA.price_series || {};
       var fuelColors = {'92': '#e74c3c', '95': '#9b59b6', 'ДТ': '#1abc9c', '100': '#e67e22', '98': '#34495e'};
-      Object.keys(priceData).forEach(function(fuel) {
+      // Select price level based on filter
+      var priceLevel = null;
+      if (cityVal && DATA.price_city_series) {
+        priceLevel = DATA.price_city_series;
+      } else if (subjVal && DATA.price_subj_series) {
+        priceLevel = DATA.price_subj_series;
+      } else if (foVal && DATA.price_fo_series) {
+        priceLevel = DATA.price_fo_series;
+      } else {
+        priceLevel = DATA.price_series || {};
+      }
+      // priceLevel is: {fuel: {key: [{date, price}]}} for fo/subj/city, or {fuel: [{date, price}]} for RF
+      var priceKey = cityVal || subjVal || foVal || '';
+      Object.keys(priceLevel).forEach(function(fuel) {
+        var fuelData = priceLevel[fuel];
+        // RF level: array of {date, price}; other levels: {key: [{date, price}]}
+        var seriesPrices = (priceKey && fuelData[priceKey]) ? fuelData[priceKey] : (priceKey ? null : fuelData);
+        if (!seriesPrices) return;
         var pmap = {};
-        priceData[fuel].forEach(function(p) { pmap[p.date] = p.price; });
+        seriesPrices.forEach(function(p) { pmap[p.date] = p.price; });
         priceDatasets.push({
           label: 'Цена ' + fuel + ' (руб/л)',
           data: seriesDates.map(function(d) { return pmap[d] || null; }),
