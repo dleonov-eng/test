@@ -48,6 +48,19 @@ tr:hover { background:#1a1d29; }
 .toggle input:checked + .slider:after { left:20px; background:#3498db; }
 .toggle .label { color:#888; font-size:14px; user-select:none; }
 
+/* Multi-select dropdown */
+.multiselect { position:relative; display:inline-block; min-width:180px; }
+.ms-btn { background:#1a1d29; color:#e0e0e0; border:1px solid #333; border-radius:8px; padding:8px 14px; font-size:14px; cursor:pointer; width:100%; text-align:left; display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.ms-btn:hover { border-color:#8ab4f8; }
+.ms-btn .ms-count { background:#2c5f8f; color:#fff; border-radius:10px; padding:1px 7px; font-size:12px; }
+.ms-panel { display:none; position:absolute; top:100%; left:0; min-width:240px; max-height:320px; overflow-y:auto; background:#1a1d29; border:1px solid #444; border-radius:0 0 8px 8px; z-index:1000; padding:4px 0; }
+.ms-panel.show { display:block; }
+.ms-item { display:flex; align-items:center; gap:8px; padding:6px 12px; cursor:pointer; font-size:14px; color:#ccc; }
+.ms-item:hover { background:#222; }
+.ms-item input { accent-color:#3498db; }
+.ms-item.selected { color:#8ab4f8; }
+.ms-divider { border-top:1px solid #333; margin:4px 0; }
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   body { padding:10px; }
@@ -55,7 +68,9 @@ tr:hover { background:#1a1d29; }
   h2 { font-size:17px; margin:20px 0 10px; }
   .subtitle { font-size:12px; margin-bottom:12px; }
   .controls { flex-direction:column; gap:8px; }
-  .controls select { width:100%; padding:10px 12px; font-size:15px; }
+  .controls select, .ms-btn { width:100%; padding:10px 12px; font-size:15px; }
+  .multiselect { width:100%; }
+  .ms-panel { max-height:240px; }
   .toggle { margin-left:0; align-self:flex-start; }
   .chart-box { padding:10px; height:300px; }
   .chart-box.tall { height:350px; }
@@ -92,9 +107,18 @@ tr:hover { background:#1a1d29; }
 
 <h2>Динамика по дням (Вся РФ / ФО / Субъект / Город)</h2>
 <div class="controls">
-  <select id="foFilter"><option value="">Вся РФ</option></select>
-  <select id="subjectFilter"><option value="">Все субъекты</option></select>
-  <select id="citySelect"><option value="">Все города</option></select>
+  <div class="multiselect" id="foMs">
+    <button class="ms-btn" onclick="toggleMsPanel('foMs')"><span id="foMsLabel">Вся РФ</span><span class="ms-count" id="foMsCount" style="display:none">0</span></button>
+    <div class="ms-panel" id="foMsPanel"></div>
+  </div>
+  <div class="multiselect" id="subjMs">
+    <button class="ms-btn" onclick="toggleMsPanel('subjMs')"><span id="subjMsLabel">Все субъекты</span><span class="ms-count" id="subjMsCount" style="display:none">0</span></button>
+    <div class="ms-panel" id="subjMsPanel"></div>
+  </div>
+  <div class="multiselect" id="cityMs">
+    <button class="ms-btn" onclick="toggleMsPanel('cityMs')"><span id="cityMsLabel">Все города</span><span class="ms-count" id="cityMsCount" style="display:none">0</span></button>
+    <div class="ms-panel" id="cityMsPanel"></div>
+  </div>
   <label class="toggle"><input type="checkbox" id="showPrices"><span class="slider"></span><span class="label">Цены</span></label>
   <label class="toggle"><input type="checkbox" id="dtAsNoFuel"><span class="slider"></span><span class="label">Только ДТ = нет</span></label>
 </div>
@@ -217,69 +241,118 @@ function init() {
     tbl.appendChild(tr);
   });
 
-  // Three-level filter: FO -> Subject -> City, chart adapts to selection
-  const foFilter = document.getElementById('foFilter');
-  const subjectFilter = document.getElementById('subjectFilter');
-  const citySelect = document.getElementById('citySelect');
+  // Multi-select filters
   const showPricesToggle = document.getElementById('showPrices');
   const dtAsNoFuelToggle = document.getElementById('dtAsNoFuel');
   let cityChart = null;
+  var foSelection = new Set();
+  var subjSelection = new Set();
+  var citySelection = new Set();
+
+  var LINE_COLORS = ['#3498db','#e74c3c','#f39c12','#27ae60','#9b59b6','#1abc9c','#e67e22','#34495e','#f1c40f','#e91e63','#00bcd4','#ff5722','#607d8b','#795548','#cddc39','#009688'];
+
+  function getMsSelection(panelId) {
+    var checks = document.querySelectorAll('#' + panelId + ' input[type=checkbox]');
+    var sel = [];
+    checks.forEach(function(c) { if (c.checked && c.value) sel.push(c.value); });
+    return sel;
+  }
+
+  function updateMsLabels() {
+    var foSel = getMsSelection('foMsPanel');
+    var subjSel = getMsSelection('subjMsPanel');
+    var citySel = getMsSelection('cityMsPanel');
+    foSelection = new Set(foSel);
+    subjSelection = new Set(subjSel);
+    citySelection = new Set(citySel);
+    // Update labels
+    document.getElementById('foMsLabel').textContent = foSel.length === 0 ? 'Вся РФ' : (foSel.length === 1 ? foSel[0] : foSel.length + ' выбрано');
+    document.getElementById('foMsCount').textContent = foSel.length; document.getElementById('foMsCount').style.display = foSel.length > 0 ? 'inline' : 'none';
+    document.getElementById('subjMsLabel').textContent = subjSel.length === 0 ? 'Все субъекты' : (subjSel.length === 1 ? subjSel[0] : subjSel.length + ' выбрано');
+    document.getElementById('subjMsCount').textContent = subjSel.length; document.getElementById('subjMsCount').style.display = subjSel.length > 0 ? 'inline' : 'none';
+    document.getElementById('cityMsLabel').textContent = citySel.length === 0 ? 'Все города' : (citySel.length === 1 ? citySel[0] : citySel.length + ' выбрано');
+    document.getElementById('cityMsCount').textContent = citySel.length; document.getElementById('cityMsCount').style.display = citySel.length > 0 ? 'inline' : 'none';
+  }
 
   function plotChart() {
-    var foVal = foFilter.value;
-    var subjVal = subjectFilter.value;
-    var cityVal = citySelect.value;
-    var series = null;
-    var label = '';
+    updateMsLabels();
+    var foSel = Array.from(foSelection);
+    var subjSel = Array.from(subjSelection);
+    var citySel = Array.from(citySelection);
 
-    if (cityVal) {
-      series = DATA.city_series[cityVal];
-      label = cityVal;
-    } else if (subjVal) {
-      series = DATA.region_series[subjVal];
-      label = subjVal;
-    } else if (foVal) {
-      series = DATA.fo_series[foVal];
-      label = foVal;
+    // Determine which series to plot
+    var seriesList = []; // [{label, series}]
+    if (citySel.length > 0) {
+      citySel.forEach(function(c) { if (DATA.city_series[c]) seriesList.push({label: c, series: DATA.city_series[c]}); });
+    } else if (subjSel.length > 0) {
+      subjSel.forEach(function(s) { if (DATA.region_series[s]) seriesList.push({label: s, series: DATA.region_series[s]}); });
+    } else if (foSel.length > 0) {
+      foSel.forEach(function(f) { if (DATA.fo_series[f]) seriesList.push({label: f, series: DATA.fo_series[f]}); });
     } else {
-      series = DATA.russia_series;
-      label = 'Вся РФ';
+      seriesList.push({label: 'Вся РФ', series: DATA.russia_series});
     }
 
-    if (!series) {
+    if (seriesList.length === 0) {
       if (cityChart) cityChart.destroy();
       return;
     }
-    series = adjustSeries(series);
-    if (cityChart) cityChart.destroy();
-    var ctx = document.getElementById('cityDailyChart').getContext('2d');
-    var seriesDates = series.map(function(s) { return s.date; });
 
-    // Build price datasets aligned to series dates (only if toggle is on)
-    var priceDatasets = [];
-    if (showPricesToggle.checked) {
+    // Use union of all dates
+    var allDates = {};
+    seriesList.forEach(function(item) {
+      adjustSeries(item.series).forEach(function(s) { allDates[s.date] = true; });
+    });
+    var seriesDates = Object.keys(allDates).sort();
+
+    // Build datasets
+    var datasets = [];
+    var multiMode = seriesList.length > 1;
+    seriesList.forEach(function(item, idx) {
+      var adjSeries = adjustSeries(item.series);
+      var pmap = {};
+      adjSeries.forEach(function(s) { pmap[s.date] = s.pct; });
+      var color = LINE_COLORS[idx % LINE_COLORS.length];
+      datasets.push({
+        label: item.label + ' — % с топливом',
+        data: seriesDates.map(function(d) { return pmap[d] !== undefined ? pmap[d] : null; }),
+        borderColor: color,
+        backgroundColor: color + '20',
+        fill: !multiMode, tension: 0.3, pointRadius: multiMode ? 2 : 3,
+        spanGaps: true,
+      });
+    });
+
+    // Add queue line only in single mode
+    if (!multiMode) {
+      var adjSeries = adjustSeries(seriesList[0].series);
+      var qmap = {};
+      adjSeries.forEach(function(s) { qmap[s.date] = s.queue; });
+      datasets.push({
+        label: 'Очередь (кол-во)',
+        data: seriesDates.map(function(d) { return qmap[d] !== undefined ? qmap[d] : null; }),
+        borderColor: '#f39c12',
+        yAxisID: 'y1',
+        fill: false, tension: 0.3, pointRadius: 2,
+        spanGaps: true,
+      });
+    }
+
+    // Price datasets (single mode only)
+    if (showPricesToggle.checked && !multiMode) {
       var fuelColors = {'92': '#e74c3c', '95': '#9b59b6', 'ДТ': '#1abc9c', '100': '#e67e22', '98': '#34495e'};
-      // Select price level based on filter
       var priceLevel = null;
-      if (cityVal && DATA.price_city_series) {
-        priceLevel = DATA.price_city_series;
-      } else if (subjVal && DATA.price_subj_series) {
-        priceLevel = DATA.price_subj_series;
-      } else if (foVal && DATA.price_fo_series) {
-        priceLevel = DATA.price_fo_series;
-      } else {
-        priceLevel = DATA.price_series || {};
-      }
-      // priceLevel is: {fuel: {key: [{date, price}]}} for fo/subj/city, or {fuel: [{date, price}]} for RF
-      var priceKey = cityVal || subjVal || foVal || '';
+      var priceKey = '';
+      if (citySel.length === 1 && DATA.price_city_series) { priceLevel = DATA.price_city_series; priceKey = citySel[0]; }
+      else if (subjSel.length === 1 && DATA.price_subj_series) { priceLevel = DATA.price_subj_series; priceKey = subjSel[0]; }
+      else if (foSel.length === 1 && DATA.price_fo_series) { priceLevel = DATA.price_fo_series; priceKey = foSel[0]; }
+      else { priceLevel = DATA.price_series || {}; }
       Object.keys(priceLevel).forEach(function(fuel) {
         var fuelData = priceLevel[fuel];
-        // RF level: array of {date, price}; other levels: {key: [{date, price}]}
         var seriesPrices = (priceKey && fuelData[priceKey]) ? fuelData[priceKey] : (priceKey ? null : fuelData);
         if (!seriesPrices) return;
         var pmap = {};
         seriesPrices.forEach(function(p) { pmap[p.date] = p.price; });
-        priceDatasets.push({
+        datasets.push({
           label: 'Цена ' + fuel + ' (руб/л)',
           data: seriesDates.map(function(d) { return pmap[d] || null; }),
           borderColor: fuelColors[fuel] || '#888',
@@ -290,32 +363,19 @@ function init() {
       });
     }
 
+    if (cityChart) cityChart.destroy();
+    var ctx = document.getElementById('cityDailyChart').getContext('2d');
     cityChart = new Chart(ctx, {
       type: 'line',
-      data: {
-        labels: seriesDates,
-        datasets: [{
-          label: label + ' — % с топливом',
-          data: series.map(function(s) { return s.pct; }),
-          borderColor: '#3498db',
-          backgroundColor: 'rgba(52,152,219,0.1)',
-          fill: true, tension: 0.3, pointRadius: 3,
-        }, {
-          label: 'Очередь (кол-во)',
-          data: series.map(function(s) { return s.queue; }),
-          borderColor: '#f39c12',
-          yAxisID: 'y1',
-          fill: false, tension: 0.3, pointRadius: 2,
-        }].concat(priceDatasets)
-      },
+      data: { labels: seriesDates, datasets: datasets },
       options: {
         responsive: true, maintainAspectRatio: false,
         plugins: { legend: { labels: { color: '#ccc', boxWidth: 12, font: { size: window.innerWidth < 768 ? 10 : 12 } } } },
         scales: {
           x: { ticks: { color: '#888', maxRotation:45, autoSkip: true, maxTicksLimit: window.innerWidth < 480 ? 5 : 12, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { color: '#222' } },
           y: { min:0, max:100, ticks: { color: '#888', callback: function(v) { return v + '%'; }, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { color: '#222' }, title: { display: window.innerWidth >= 768, text: '% с топливом', color: '#888' } },
-          y1: { position: 'right', ticks: { color: '#888', font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { drawOnChartArea: false }, title: { display: window.innerWidth >= 768, text: 'Очередь', color: '#888' } },
-          y2: showPricesToggle.checked ? { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + ' руб'; }, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { drawOnChartArea: false }, title: { display: window.innerWidth >= 768, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true } : { display: false }
+          y1: multiMode ? { display: false } : { position: 'right', ticks: { color: '#888', font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { drawOnChartArea: false }, title: { display: window.innerWidth >= 768, text: 'Очередь', color: '#888' } },
+          y2: (showPricesToggle.checked && !multiMode) ? { position: 'right', ticks: { color: '#e74c3c', callback: function(v) { return v + ' руб'; }, font: { size: window.innerWidth < 768 ? 9 : 11 } }, grid: { drawOnChartArea: false }, title: { display: window.innerWidth >= 768, text: 'Цена (руб/л)', color: '#e74c3c' }, offset: true } : { display: false }
         }
       }
     });
@@ -323,81 +383,100 @@ function init() {
 
   var hierarchy = DATA.city_hierarchy || {};
 
-  // Populate FO filter
-  Object.keys(hierarchy).sort().forEach(function(fo) {
-    var opt = document.createElement('option');
-    opt.value = fo; opt.textContent = fo;
-    foFilter.appendChild(opt);
+  function buildMsPanel(panelId, items, onChange) {
+    var panel = document.getElementById(panelId);
+    panel.innerHTML = '';
+    items.forEach(function(item) {
+      var div = document.createElement('div');
+      div.className = 'ms-item';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox'; cb.value = item;
+      cb.addEventListener('change', function() { div.classList.toggle('selected', cb.checked); onChange(); });
+      div.appendChild(cb);
+      var label = document.createElement('span');
+      label.textContent = item;
+      div.appendChild(label);
+      panel.appendChild(div);
+    });
+  }
+
+  function populateFoPanel() {
+    var foItems = Object.keys(hierarchy).sort();
+    buildMsPanel('foMsPanel', foItems, function() { populateSubjPanel(); plotChart(); });
+  }
+
+  function populateSubjPanel() {
+    var foSel = getMsSelection('foMsPanel');
+    var subjItems = [];
+    if (foSel.length > 0) {
+      foSel.forEach(function(fo) {
+        if (hierarchy[fo]) Object.keys(hierarchy[fo]).forEach(function(s) { if (subjItems.indexOf(s) < 0) subjItems.push(s); });
+      });
+    } else {
+      Object.keys(hierarchy).forEach(function(fo) {
+        Object.keys(hierarchy[fo]).forEach(function(s) { if (subjItems.indexOf(s) < 0) subjItems.push(s); });
+      });
+    }
+    // Preserve selection
+    var prevSel = getMsSelection('subjMsPanel');
+    buildMsPanel('subjMsPanel', subjItems.sort(), function() { populateCityPanel(); plotChart(); });
+    // Restore checked state
+    document.querySelectorAll('#subjMsPanel input[type=checkbox]').forEach(function(cb) {
+      if (prevSel.indexOf(cb.value) >= 0) { cb.checked = true; cb.parentElement.classList.add('selected'); }
+    });
+    populateCityPanel();
+  }
+
+  function populateCityPanel() {
+    var foSel = getMsSelection('foMsPanel');
+    var subjSel = getMsSelection('subjMsPanel');
+    var cityItems = [];
+    if (subjSel.length > 0) {
+      subjSel.forEach(function(subj) {
+        Object.keys(hierarchy).forEach(function(fo) {
+          if (hierarchy[fo][subj]) hierarchy[fo][subj].forEach(function(c) { if (cityItems.indexOf(c) < 0) cityItems.push(c); });
+        });
+      });
+    } else if (foSel.length > 0) {
+      foSel.forEach(function(fo) {
+        if (hierarchy[fo]) Object.keys(hierarchy[fo]).forEach(function(subj) {
+          hierarchy[fo][subj].forEach(function(c) { if (cityItems.indexOf(c) < 0) cityItems.push(c); });
+        });
+      });
+    } else {
+      Object.keys(hierarchy).forEach(function(fo) {
+        Object.keys(hierarchy[fo]).forEach(function(subj) {
+          hierarchy[fo][subj].forEach(function(c) { if (cityItems.indexOf(c) < 0) cityItems.push(c); });
+        });
+      });
+    }
+    var prevSel = getMsSelection('cityMsPanel');
+    buildMsPanel('cityMsPanel', cityItems.sort(), function() { plotChart(); });
+    document.querySelectorAll('#cityMsPanel input[type=checkbox]').forEach(function(cb) {
+      if (prevSel.indexOf(cb.value) >= 0) { cb.checked = true; cb.parentElement.classList.add('selected'); }
+    });
+  }
+
+  // Close panels on outside click
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.multiselect')) {
+      document.querySelectorAll('.ms-panel').forEach(function(p) { p.classList.remove('show'); });
+    }
   });
 
-  function populateSubjects(foVal) {
-    subjectFilter.innerHTML = '<option value="">Все субъекты</option>';
-    if (foVal && hierarchy[foVal]) {
-      // FO selected - show subjects in that FO
-      Object.keys(hierarchy[foVal]).sort().forEach(function(subj) {
-        var opt = document.createElement('option');
-        opt.value = subj; opt.textContent = subj;
-        subjectFilter.appendChild(opt);
-      });
-    } else {
-      // No FO selected - show ALL subjects from all FOs
-      var allSubj = {};
-      Object.keys(hierarchy).forEach(function(fo) {
-        Object.keys(hierarchy[fo]).forEach(function(subj) {
-          allSubj[subj] = true;
-        });
-      });
-      Object.keys(allSubj).sort().forEach(function(subj) {
-        var opt = document.createElement('option');
-        opt.value = subj; opt.textContent = subj;
-        subjectFilter.appendChild(opt);
-      });
-    }
-    populateCities(foVal, '');
-  }
-
-  function populateCities(foVal, subjVal) {
-    citySelect.innerHTML = '<option value="">Все города</option>';
-    var cities = [];
-    if (subjVal) {
-      // Subject selected - find cities for this subject (across all FOs if needed)
-      if (foVal && hierarchy[foVal] && hierarchy[foVal][subjVal]) {
-        cities = cities.concat(hierarchy[foVal][subjVal]);
-      } else {
-        // Search subject in all FOs
-        Object.keys(hierarchy).forEach(function(fo) {
-          if (hierarchy[fo][subjVal]) {
-            cities = cities.concat(hierarchy[fo][subjVal]);
-          }
-        });
-      }
-    } else if (foVal && hierarchy[foVal]) {
-      // Only FO selected - all cities in FO
-      Object.keys(hierarchy[foVal]).forEach(function(subj) {
-        cities = cities.concat(hierarchy[foVal][subj]);
-      });
-    } else {
-      // Nothing selected - all cities
-      Object.keys(hierarchy).forEach(function(fo) {
-        Object.keys(hierarchy[fo]).forEach(function(subj) {
-          cities = cities.concat(hierarchy[fo][subj]);
-        });
-      });
-    }
-    cities.sort().forEach(function(c) {
-      var opt = document.createElement('option');
-      opt.value = c; opt.textContent = c;
-      citySelect.appendChild(opt);
-    });
-    plotChart();
-  }
-
-  foFilter.addEventListener('change', function() { populateSubjects(foFilter.value); });
-  subjectFilter.addEventListener('change', function() { populateCities(foFilter.value, subjectFilter.value); });
-  citySelect.addEventListener('change', function() { plotChart(); });
   showPricesToggle.addEventListener('change', function() { plotChart(); });
   dtAsNoFuelToggle.addEventListener('change', function() { dtAsNoFuel = this.checked; plotChart(); updateSummary(); });
-  populateSubjects('');
+  populateFoPanel();
+  populateSubjPanel();
+  populateCityPanel();
+  plotChart();
+}
+
+function toggleMsPanel(id) {
+  var panel = document.getElementById(id + 'Panel');
+  var isOpen = panel.classList.contains('show');
+  document.querySelectorAll('.ms-panel').forEach(function(p) { p.classList.remove('show'); });
+  if (!isOpen) panel.classList.add('show');
 }
 
 loadData();
