@@ -121,6 +121,7 @@ tr:hover { background:#1a1d29; }
   </div>
   <label class="toggle"><input type="checkbox" id="showPrices"><span class="slider"></span><span class="label">Цены</span></label>
   <label class="toggle"><input type="checkbox" id="dtAsNoFuel"><span class="slider"></span><span class="label">Только ДТ = нет</span></label>
+  <button class="ms-btn" id="resetBtn" style="min-width:auto; padding:8px 14px;">Сбросить</button>
 </div>
 <div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
@@ -466,6 +467,16 @@ function init() {
 
   showPricesToggle.addEventListener('change', function() { plotChart(); });
   dtAsNoFuelToggle.addEventListener('change', function() { dtAsNoFuel = this.checked; plotChart(); updateSummary(); });
+  document.getElementById('resetBtn').addEventListener('click', function() {
+    document.querySelectorAll('.ms-panel input[type=checkbox]').forEach(function(cb) { cb.checked = false; cb.parentElement.classList.remove('selected'); });
+    showPricesToggle.checked = false;
+    dtAsNoFuelToggle.checked = false;
+    dtAsNoFuel = false;
+    populateSubjPanel();
+    populateCityPanel();
+    plotChart();
+    updateSummary();
+  });
   populateFoPanel();
   populateSubjPanel();
   populateCityPanel();
