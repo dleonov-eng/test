@@ -96,6 +96,7 @@ tr:hover { background:#1a1d29; }
   <select id="subjectFilter"><option value="">Все субъекты</option></select>
   <select id="citySelect"><option value="">Все города</option></select>
   <label class="toggle"><input type="checkbox" id="showPrices"><span class="slider"></span><span class="label">Цены</span></label>
+  <label class="toggle"><input type="checkbox" id="dtAsNoFuel"><span class="slider"></span><span class="label">Только ДТ = нет</span></label>
 </div>
 <div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
@@ -111,6 +112,32 @@ tr:hover { background:#1a1d29; }
 
 <script>
 let DATA = null;
+let dtAsNoFuel = false;
+
+function adjustSeries(series) {
+  if (!dtAsNoFuel) return series;
+  return series.map(function(s) {
+    var adjYes = s.yes - (s.dt_only || 0);
+    var adjNo = s.no + (s.dt_only || 0);
+    var adjPct = s.total > 0 ? Math.round(adjYes * 100.0 / s.total * 10) / 10 : 0;
+    return {date: s.date, total: s.total, yes: adjYes, no: adjNo, queue: s.queue, low: s.low, dt_only: s.dt_only, pct: adjPct};
+  });
+}
+
+function updateSummary() {
+  var rs = adjustSeries(DATA.russia_series);
+  var firstPct = rs[0]?.pct || 0;
+  var lastPct = rs[rs.length-1]?.pct || 0;
+  var minPct = Math.min(...rs.map(r => r.pct));
+  var maxPct = Math.max(...rs.map(r => r.pct));
+  var avgPct = (rs.reduce((a,r) => a+r.pct, 0) / rs.length).toFixed(1);
+  document.getElementById('summary').innerHTML =
+    '<div class="card blue"><div class="value">' + firstPct + '%</div><div class="label">Было (первый день)</div></div>' +
+    '<div class="card ' + (lastPct<40?'red':lastPct<60?'orange':'green') + '"><div class="value">' + lastPct + '%</div><div class="label">Стало (последний день)</div></div>' +
+    '<div class="card red"><div class="value">' + minPct + '%</div><div class="label">Минимум за период</div></div>' +
+    '<div class="card green"><div class="value">' + maxPct + '%</div><div class="label">Максимум за период</div></div>' +
+    '<div class="card orange"><div class="value">' + avgPct + '%</div><div class="label">Среднее за период</div></div>';
+}
 
 async function loadData() {
   try {
@@ -195,6 +222,7 @@ function init() {
   const subjectFilter = document.getElementById('subjectFilter');
   const citySelect = document.getElementById('citySelect');
   const showPricesToggle = document.getElementById('showPrices');
+  const dtAsNoFuelToggle = document.getElementById('dtAsNoFuel');
   let cityChart = null;
 
   function plotChart() {
@@ -222,6 +250,7 @@ function init() {
       if (cityChart) cityChart.destroy();
       return;
     }
+    series = adjustSeries(series);
     if (cityChart) cityChart.destroy();
     var ctx = document.getElementById('cityDailyChart').getContext('2d');
     var seriesDates = series.map(function(s) { return s.date; });
@@ -367,6 +396,7 @@ function init() {
   subjectFilter.addEventListener('change', function() { populateCities(foFilter.value, subjectFilter.value); });
   citySelect.addEventListener('change', function() { plotChart(); });
   showPricesToggle.addEventListener('change', function() { plotChart(); });
+  dtAsNoFuelToggle.addEventListener('change', function() { dtAsNoFuel = this.checked; plotChart(); updateSummary(); });
   populateSubjects('');
 }
 
