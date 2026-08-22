@@ -656,15 +656,15 @@
             </div>
             <div class="summary-card status-yes" id="filterYes">
                 <h3>Топливо есть</h3>
-                <div class="value">5397</div>
+                <div class="value">5399</div>
             </div>
             <div class="summary-card status-no" id="filterNo">
                 <h3>Нет топлива</h3>
-                <div class="value" id="summaryNo">1977</div>
+                <div class="value" id="summaryNo">1975</div>
             </div>
             <div class="summary-card" style="border-left-color: #795548;" id="filterDtOnly">
                 <h3>Только ДТ</h3>
-                <div class="value">880</div>
+                <div class="value">881</div>
             </div>
             <div class="summary-card" id="filterClear" onclick="clearStatusFilter()" style="cursor: pointer; display: none;" title="Сбросить фильтр">
                 <h3>Сбросить фильтр</h3>
@@ -696,7 +696,7 @@
                 </tr>
             </thead>
 
-            <tbody class="city-group" data-city="Москва" data-region="Москва" data-yes="361" data-no="262" data-dt-only="167" data-total="681">
+            <tbody class="city-group" data-city="Москва" data-region="Москва" data-yes="363" data-no="260" data-dt-only="168" data-total="681">
                 <tr class="city-row" data-city="Москва">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Москва')">▶</button>
@@ -704,12 +704,12 @@
                     </td>
                     <td>681</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Москва')" title="Показать заправки с топливом в Москва">361</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 50, Мало на: 7)</small>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Москва')" title="Показать заправки с топливом в Москва">363</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 51, Мало на: 7)</small>
                     </td>
                     <td>
-                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Москва')" title="Показать заправки без топлива в Москва">262</span>
+                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Москва')" title="Показать заправки без топлива в Москва">260</span>
                     </td>
-                    <td class="city-percent">53.0%</td>
+                    <td class="city-percent">53.3%</td>
                 </tr>
                 <tr class="station-details" id="details-Москва">
                     <td colspan="5">
@@ -3510,17 +3510,17 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 04:12:21</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="no">
+                            <div class="station-item" data-status="queue">
                                 <div class="station-info">
                                     <div class="station-brand">Татнефть Татнефть</div>
                                     <div class="station-addr">Татнефть, вл9 к7, улица Мусы Джалиля, район Зябликово, Москва, Центральный федеральный округ, 115580, Россия</div>
                                     <div class="station-region">Москва</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=55.6277192,37.7508535" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 55.6277192, 37.7508535</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">92 — 65.49 ₽</span> <span class="fuel-badge">95 — 71.79 ₽</span> <span class="fuel-badge">ДТ — 79.29 ₽</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 65.49 ₽</span> <span class="fuel-badge">Есть 95 — 71.79 ₽</span> <span class="fuel-badge">Есть ДТ — 79.29 ₽</span> <span class="queue-indicator queue-large">≈ 20–50 машин</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:50</small>
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:03:17</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Только ДТ">
@@ -4771,17 +4771,17 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:30</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="no">
+                            <div class="station-item" data-status="Только ДТ">
                                 <div class="station-info">
                                     <div class="station-brand">Роснефть Роснефть</div>
                                     <div class="station-addr">Роснефть, Нахимовский проспект, район Черёмушки, Москва, Центральный федеральный округ, 115580, Россия</div>
                                     <div class="station-region">Москва</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=55.6707646,37.5837243" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 55.6707646, 37.5837243</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">92 — 65.60 ₽</span> <span class="fuel-badge">95 — 71.90 ₽</span> <span class="fuel-badge">ДТ — 81.45 ₽</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть ДТ — 81.45 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:26:23</small>
+                                    <div class="station-status Только ДТ">Только ДТ</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:39</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -5197,7 +5197,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status Только ДТ">Только ДТ</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:08:10</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:02</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Только ДТ">
@@ -6181,11 +6181,11 @@
                                     <div class="station-addr">Газпромнефть, Ленинградский проспект (дублёр), Хорошёвский район, Москва, Центральный федеральный округ, 125190, Россия</div>
                                     <div class="station-region">Москва</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=55.798642624662634,37.53494560718537" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 55.798642624662634, 37.53494560718537</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 65.32 ₽</span> <span class="fuel-badge">Есть 95 — 73.47 ₽</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 65.32 ₽</span> <span class="fuel-badge">Есть 95 — 73.47 ₽</span> <span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:59</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:05:23</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -6350,11 +6350,11 @@
                                     <div class="station-addr">Лукойл, 33А с1, Большая Филёвская улица, район Филёвский Парк, Москва, Центральный федеральный округ, 121309, Россия</div>
                                     <div class="station-region">Москва</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=55.7435018,37.4824333" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 55.7435018, 37.4824333</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 65.82 ₽</span> <span class="fuel-badge">Есть 95 — 74.79 ₽</span> <span class="fuel-badge">Есть ДТ — 80.42 ₽</span> <span class="queue-indicator queue-small">≈ до 5 машин</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 65.82 ₽</span> <span class="fuel-badge">Есть 95 — 74.79 ₽</span> <span class="fuel-badge">Есть ДТ — 80.42 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:56</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:47</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -6471,7 +6471,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:56:16</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:38</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Только ДТ">
@@ -11019,7 +11019,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 03:01:31</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:31:18</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -11630,7 +11630,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 03:59:16</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:35:43</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -16724,7 +16724,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-21 05:11:36</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:26</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="low">
@@ -18084,7 +18084,7 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Екатеринбург" data-region="Уральский ФО" data-yes="116" data-no="59" data-dt-only="17" data-total="199">
+            <tbody class="city-group" data-city="Екатеринбург" data-region="Уральский ФО" data-yes="114" data-no="61" data-dt-only="17" data-total="199">
                 <tr class="city-row" data-city="Екатеринбург">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Екатеринбург')">▶</button>
@@ -18092,12 +18092,12 @@
                     </td>
                     <td>199</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Екатеринбург')" title="Показать заправки с топливом в Екатеринбург">116</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 3, Мало на: 3)</small>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Екатеринбург')" title="Показать заправки с топливом в Екатеринбург">114</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 4, Мало на: 2)</small>
                     </td>
                     <td>
-                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Екатеринбург')" title="Показать заправки без топлива в Екатеринбург">59</span>
+                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Екатеринбург')" title="Показать заправки без топлива в Екатеринбург">61</span>
                     </td>
-                    <td class="city-percent">58.3%</td>
+                    <td class="city-percent">57.3%</td>
                 </tr>
                 <tr class="station-details" id="details-Екатеринбург">
                     <td colspan="5">
@@ -18831,7 +18831,7 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 02:30:40</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="yes">
+                            <div class="station-item" data-status="no">
                                 <div class="station-info">
                                     <div class="station-brand">Башнефть Башнефть</div>
                                     <div class="station-addr">Башнефть, ЕКАД, Октябрьский район, Екатеринбург, городской округ Екатеринбург, Свердловская область, Уральский федеральный округ, 623106, Россия</div>
@@ -18840,8 +18840,8 @@
                                     <div class="station-detail"><span class="fuel-badge">92 — 62.60 ₽</span> <span class="fuel-badge">ДТ — 79.50 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:24:45</small>
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:03:23</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -18870,7 +18870,7 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-21 19:29:00</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="yes">
+                            <div class="station-item" data-status="no">
                                 <div class="station-info">
                                     <div class="station-brand">Лукойл Лукойл</div>
                                     <div class="station-addr">Лукойл, Елизаветинское шоссе, Елизавет, Чкаловский район, Екатеринбург, городской округ Екатеринбург, Свердловская область, Уральский федеральный округ, 620024, Россия</div>
@@ -18879,8 +18879,8 @@
                                     <div class="station-detail"><span class="fuel-badge">92 — 64.90 ₽</span> <span class="fuel-badge">95 — 70.71 ₽</span> <span class="fuel-badge">100 — 98.02 ₽</span> <span class="fuel-badge">ДТ — 82.40 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:42</small>
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:27</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -18971,7 +18971,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status Только ДТ">Только ДТ</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:23:44</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:08</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Нет актуальных данных">
@@ -19257,7 +19257,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status low">Мало</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:59</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:05:19</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -19364,17 +19364,17 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:21</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="low">
+                            <div class="station-item" data-status="queue">
                                 <div class="station-info">
                                     <div class="station-brand">Газпромнефть Газпромнефть</div>
                                     <div class="station-addr">Газпромнефть, 1В, улица Академика Павлова, Сосновый бор, Чкаловский район, Екатеринбург, городской округ Екатеринбург, Свердловская область, Уральский федеральный округ, 620023, Россия</div>
                                     <div class="station-region">Свердловская область</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=56.7901131,60.6685594" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 56.7901131, 60.6685594</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 65.13 ₽</span> <span class="fuel-badge">Есть 95 — 69.11 ₽</span> <span class="fuel-badge">Есть 100 — 93.39 ₽</span> <span class="fuel-badge">Есть ДТ — 80.74 ₽</span> <span class="queue-indicator queue-medium">≈ 5–20 машин</span> <span class="limit-badge">Лимит 40 л</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 65.13 ₽</span> <span class="fuel-badge">Есть 95 — 69.11 ₽</span> <span class="fuel-badge">Есть ДТ — 80.74 ₽</span> <span class="queue-indicator queue-large">≈ 20–50 машин</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status low">Мало</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:52:14</small>
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:54</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -27929,11 +27929,11 @@
                                     <div class="station-addr">Лукойл, Сылвенский тракт, Новые Ляды, Свердловский район, Пермь, Пермский городской округ, Пермский край, Приволжский федеральный округ, 614105, Россия</div>
                                     <div class="station-region">Пермский край</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=58.0310334,56.618907" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 58.0310334, 56.618907</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">92 — 65.01 ₽</span> <span class="fuel-badge">95 — 70.71 ₽</span> <span class="fuel-badge">ДТ — 82.40 ₽</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 95 — 70.71 ₽</span> <span class="fuel-badge">Есть ДТ — 82.40 ₽</span> <span class="queue-indicator queue-small">≈ до 5 машин</span></div>
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:22</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:01:52</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -35595,7 +35595,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status Только ДТ">Только ДТ</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-21 09:28:41</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:05:10</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -37278,20 +37278,20 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Магнитогорск" data-region="Уральский ФО" data-yes="52" data-no="22" data-dt-only="8" data-total="93">
+            <tbody class="city-group" data-city="Магнитогорск" data-region="Уральский ФО" data-yes="51" data-no="22" data-dt-only="8" data-total="92">
                 <tr class="city-row" data-city="Магнитогорск">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Магнитогорск')">▶</button>
                         <strong>Магнитогорск</strong>
                     </td>
-                    <td>93</td>
+                    <td>92</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Магнитогорск')" title="Показать заправки с топливом в Магнитогорск">52</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 1, Мало на: 2)</small>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Магнитогорск')" title="Показать заправки с топливом в Магнитогорск">51</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 1, Мало на: 2)</small>
                     </td>
                     <td>
                         <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Магнитогорск')" title="Показать заправки без топлива в Магнитогорск">22</span>
                     </td>
-                    <td class="city-percent">55.9%</td>
+                    <td class="city-percent">55.4%</td>
                 </tr>
                 <tr class="station-details" id="details-Магнитогорск">
                     <td colspan="5">
@@ -37632,7 +37632,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:27:03</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:32</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -37827,7 +37827,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:46</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:59</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -37908,7 +37908,7 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 04:39:44</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="yes">
+                            <div class="station-item" data-status="Нет актуальных данных">
                                 <div class="station-info">
                                     <div class="station-brand">Минимакс Минимакс</div>
                                     <div class="station-addr">Красная, улица Гагарина, Правобережный район, Магнитогорск, Магнитогорский городской округ, Челябинская область, Уральский федеральный округ, 455000, Россия</div>
@@ -37917,7 +37917,7 @@
                                     <div class="station-detail"><span class="fuel-badge">92 — 89.00 ₽</span> <span class="fuel-badge">ДТ — 90.00 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
+                                    <div class="station-status Нет актуальных данных">Нет актуальных данных</div>
                                     <small style="color: #999; font-size: 0.75em;">2026-08-19 09:43:48</small>
                                 </div>
                             </div>
@@ -46081,7 +46081,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:35:49</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:45</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46120,7 +46120,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:31:52</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:54</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46146,7 +46146,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:34:01</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:21</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46159,7 +46159,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:19:25</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:58</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46172,7 +46172,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:20</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:28</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46185,7 +46185,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:30:12</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:20</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46198,7 +46198,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:33:30</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:55</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46211,7 +46211,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:15</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:04</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46224,7 +46224,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:28:51</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:30</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46237,7 +46237,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:33:12</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:41</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46250,7 +46250,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:35:00</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:49</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46263,7 +46263,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 02:50:18</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:52:38</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46289,7 +46289,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:33:37</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:26</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46302,7 +46302,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:31:57</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:07</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46315,7 +46315,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:34:48</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:29</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46328,7 +46328,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:34:11</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:37</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46354,7 +46354,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:33:26</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:29</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46445,7 +46445,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 02:49:42</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:18</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46458,7 +46458,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:30:20</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:56</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46471,7 +46471,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 03:42:06</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:32</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46575,7 +46575,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:14</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:51:24</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46588,7 +46588,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 03:42:43</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:34</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -46692,7 +46692,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 02:58:23</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:23</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -56201,7 +56201,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:55:22</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:04:06</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -58194,7 +58194,7 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Чебоксары" data-region="Приволжский ФО" data-yes="40" data-no="5" data-dt-only="4" data-total="52">
+            <tbody class="city-group" data-city="Чебоксары" data-region="Приволжский ФО" data-yes="41" data-no="4" data-dt-only="4" data-total="52">
                 <tr class="city-row" data-city="Чебоксары">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Чебоксары')">▶</button>
@@ -58202,12 +58202,12 @@
                     </td>
                     <td>52</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Чебоксары')" title="Показать заправки с топливом в Чебоксары">40</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 1)</small>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Чебоксары')" title="Показать заправки с топливом в Чебоксары">41</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 1)</small>
                     </td>
                     <td>
-                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Чебоксары')" title="Показать заправки без топлива в Чебоксары">5</span>
+                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Чебоксары')" title="Показать заправки без топлива в Чебоксары">4</span>
                     </td>
-                    <td class="city-percent">76.9%</td>
+                    <td class="city-percent">78.8%</td>
                 </tr>
                 <tr class="station-details" id="details-Чебоксары">
                     <td colspan="5">
@@ -58304,7 +58304,7 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:59</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="no">
+                            <div class="station-item" data-status="yes">
                                 <div class="station-info">
                                     <div class="station-brand">Лукойл Лукойл</div>
                                     <div class="station-addr">Лукойл, М-7, Ленинский район, Чебоксары, городской округ Чебоксары, Чувашия, Приволжский федеральный округ, 428006, Россия</div>
@@ -58313,7 +58313,7 @@
                                     <div class="station-detail"><span class="fuel-badge">92 — 64.79 ₽</span> <span class="fuel-badge">95 — 69.99 ₽</span> <span class="fuel-badge">100 — 97.45 ₽</span> <span class="fuel-badge">ДТ — 78.84 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
+                                    <div class="station-status yes">Есть</div>
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 04:15:09</small>
                                 </div>
                             </div>
@@ -58561,7 +58561,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:16</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:59</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -63008,7 +63008,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:40:00</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:23</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -63125,7 +63125,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:39</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:55</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -67042,7 +67042,7 @@
                     </td>
                     <td>40</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Саранск')" title="Показать заправки с топливом в Саранск">29</span><small style='color: #666; margin-left: 8px;'>(Мало на: 1)</small>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Саранск')" title="Показать заправки с топливом в Саранск">29</span>
                     </td>
                     <td>
                         <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Саранск')" title="Показать заправки без топлива в Саранск">8</span>
@@ -67118,17 +67118,17 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-18 12:44:27</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="low">
+                            <div class="station-item" data-status="yes">
                                 <div class="station-info">
                                     <div class="station-brand">Газойл Газойл</div>
                                     <div class="station-addr">Газойл, 1Б, улица Победы, Пролетарский район, Саранск, городской округ Саранск, Мордовия, Приволжский федеральный округ, 430013, Россия</div>
                                     <div class="station-region">Мордовия</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=54.2056044,45.1368786" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 54.2056044, 45.1368786</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span> <span class="fuel-badge">Есть 95</span> <span class="limit-badge">Лимит 40 л</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92</span> <span class="fuel-badge">Есть 95</span> <span class="fuel-badge">Есть ДТ — 81.05 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status low">Мало</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:53:37</small>
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-21 04:41:59</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Нет актуальных данных">
@@ -69473,7 +69473,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:28:00</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:58</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -70535,7 +70535,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:40:36</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:16</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -70626,7 +70626,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:47</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:18</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -70652,7 +70652,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:33</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:34</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -72076,7 +72076,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:36:04</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:44</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -72141,7 +72141,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:34</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:05</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -72154,7 +72154,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:26</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:44:26</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -72271,7 +72271,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:29</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:24</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Нет актуальных данных">
@@ -72297,7 +72297,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:37:58</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:35</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -72591,7 +72591,7 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Якутск" data-region="Дальневосточный ФО" data-yes="21" data-no="1" data-dt-only="0" data-total="34">
+            <tbody class="city-group" data-city="Якутск" data-region="Дальневосточный ФО" data-yes="22" data-no="1" data-dt-only="0" data-total="34">
                 <tr class="city-row" data-city="Якутск">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Якутск')">▶</button>
@@ -72599,12 +72599,12 @@
                     </td>
                     <td>34</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Якутск')" title="Показать заправки с топливом в Якутск">21</span>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Якутск')" title="Показать заправки с топливом в Якутск">22</span>
                     </td>
                     <td>
                         <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Якутск')" title="Показать заправки без топлива в Якутск">1</span>
                     </td>
-                    <td class="city-percent">61.8%</td>
+                    <td class="city-percent">64.7%</td>
                 </tr>
                 <tr class="station-details" id="details-Якутск">
                     <td colspan="5">
@@ -72815,7 +72815,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-21 13:06:27</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:46</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -72948,25 +72948,25 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-21 22:01:19</small>
                                 </div>
                             </div>
+                            <div class="station-item" data-status="yes">
+                                <div class="station-info">
+                                    <div class="station-brand">Саханефтегазсбыт Саханефтегазсбыт</div>
+                                    <div class="station-addr">Саханефтегазсбыт, проспект Михаила Николаева, район Оптовики, Якутск, городской округ Якутск, Республика Саха (Якутия), Дальневосточный федеральный округ, 677007, Россия</div>
+                                    <div class="station-region">Республика Саха (Якутия)</div>
+                                    <div class="station-coords"><a href="https://yandex.ru/maps/?text=61.9973125,129.6895987" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 61.9973125, 129.6895987</a></div>
+                                    
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:39</small>
+                                </div>
+                            </div>
                             <div class="station-item" data-status="unknown">
                                 <div class="station-info">
                                     <div class="station-brand">Туймаада-нефть Туймаада-нефть</div>
                                     <div class="station-addr">улица 50 лет Советской Армии, район Даркылах 2, Якутск, городской округ Якутск, Республика Саха (Якутия), Дальневосточный федеральный округ, 677004, Россия</div>
                                     <div class="station-region">Республика Саха (Якутия)</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=62.08009170670667,129.79929864406589" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 62.08009170670667, 129.79929864406589</a></div>
-                                    
-                                </div>
-                                <div style="text-align: right;">
-                                    <div class="station-status unknown">unknown</div>
-                                    <small style="color: #999; font-size: 0.75em;"></small>
-                                </div>
-                            </div>
-                            <div class="station-item" data-status="unknown">
-                                <div class="station-info">
-                                    <div class="station-brand">Саханефтегазсбыт Саханефтегазсбыт</div>
-                                    <div class="station-addr">Саханефтегазсбыт, проспект Михаила Николаева, район Оптовики, Якутск, городской округ Якутск, Республика Саха (Якутия), Дальневосточный федеральный округ, 677007, Россия</div>
-                                    <div class="station-region">Республика Саха (Якутия)</div>
-                                    <div class="station-coords"><a href="https://yandex.ru/maps/?text=61.9973125,129.6895987" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 61.9973125, 129.6895987</a></div>
                                     
                                 </div>
                                 <div style="text-align: right;">
@@ -75093,7 +75093,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:28:22</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:40:17</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -79645,11 +79645,11 @@
                                     <div class="station-addr">Башнефть, улица Сутягина, Копейск, Копейский городской округ, Челябинская область, Уральский федеральный округ, 456601, Россия</div>
                                     <div class="station-region">Челябинская область</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=55.1194285,61.6207749" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 55.1194285, 61.6207749</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 58.60 ₽</span> <span class="fuel-badge">Есть ДТ — 79.90 ₽</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 58.60 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:14</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:03:23</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -79904,7 +79904,7 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Новороссийск" data-region="Южный ФО" data-yes="11" data-no="13" data-dt-only="6" data-total="27">
+            <tbody class="city-group" data-city="Новороссийск" data-region="Южный ФО" data-yes="10" data-no="14" data-dt-only="6" data-total="27">
                 <tr class="city-row" data-city="Новороссийск">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Новороссийск')">▶</button>
@@ -79912,12 +79912,12 @@
                     </td>
                     <td>27</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Новороссийск')" title="Показать заправки с топливом в Новороссийск">11</span><small style='color: #666; margin-left: 8px;'>(Мало на: 1)</small>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Новороссийск')" title="Показать заправки с топливом в Новороссийск">10</span><small style='color: #666; margin-left: 8px;'>(Мало на: 1)</small>
                     </td>
                     <td>
-                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Новороссийск')" title="Показать заправки без топлива в Новороссийск">13</span>
+                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Новороссийск')" title="Показать заправки без топлива в Новороссийск">14</span>
                     </td>
-                    <td class="city-percent">40.7%</td>
+                    <td class="city-percent">37.0%</td>
                 </tr>
                 <tr class="station-details" id="details-Новороссийск">
                     <td colspan="5">
@@ -80066,17 +80066,17 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-18 11:43:46</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="yes">
+                            <div class="station-item" data-status="no">
                                 <div class="station-info">
                                     <div class="station-brand">Роснефть Роснефть</div>
                                     <div class="station-addr">ВБРР, Мысхакское шоссе, Центральный район, Новороссийск, городской округ Новороссийск, Краснодарский край, Южный федеральный округ, 353915, Россия</div>
                                     <div class="station-region">Краснодарский край</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=44.69560021158129,37.76244521141053" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 44.69560021158129, 37.76244521141053</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 95 — 72.20 ₽</span> <span class="fuel-badge">Есть ДТ</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">92 — 66.05 ₽</span> <span class="fuel-badge">95 — 72.20 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:37</small>
+                                    <div class="station-status no">Нет</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:05:45</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -80770,11 +80770,11 @@
                                     <div class="station-addr">Лукойл, Кусинское шоссе, Северо-запад, Златоуст, Златоустовский городской округ, Челябинская область, Уральский федеральный округ, 456203, Россия</div>
                                     <div class="station-region">Челябинская область</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=55.192048348378655,59.632392525672905" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 55.192048348378655, 59.632392525672905</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 63.34 ₽</span> <span class="fuel-badge">Есть 95 — 69.95 ₽</span> <span class="queue-indicator queue-medium">≈ 5–20 машин</span> <span class="limit-badge">Лимит 40 л</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 63.34 ₽</span> <span class="fuel-badge">Есть 95 — 69.95 ₽</span> <span class="queue-indicator queue-small">≈ до 5 машин</span> <span class="limit-badge">Лимит 40 л</span></div>
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status low">Мало</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:38</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:58:58</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -80822,11 +80822,11 @@
                                     <div class="station-addr">Башнефть, Береговая Демидовская улица, Златоуст, Златоустовский городской округ, Челябинская область, Уральский федеральный округ, 456200, Россия</div>
                                     <div class="station-region">Челябинская область</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=55.16494380771917,59.68321232803647" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 55.16494380771917, 59.68321232803647</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 61.35 ₽</span> <span class="fuel-badge">Есть 95 — 66.20 ₽</span> <span class="fuel-badge">Есть ДТ — 79.05 ₽</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 61.35 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 03:58:22</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 05:02:13</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -80878,7 +80878,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:33:53</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:43:59</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -82068,7 +82068,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:03:42</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:55</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -83620,7 +83620,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:28</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:33</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -83633,7 +83633,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:15</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:52:02</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -84047,7 +84047,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:35:56</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:49</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -84060,7 +84060,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:43:47</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:29</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -84099,7 +84099,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:44</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:14</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -84112,7 +84112,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:40:21</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:09</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -84125,7 +84125,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:30:03</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:57</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -84177,7 +84177,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:08</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:12</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -88881,7 +88881,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:31:48</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:11</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -88894,7 +88894,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:29:47</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:09</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -88920,7 +88920,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:26:28</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:19</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -88933,7 +88933,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:36:01</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:13</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -88946,7 +88946,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:28:46</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:13</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -88972,7 +88972,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:33:29</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:39</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Нет актуальных данных">
@@ -89811,7 +89811,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:59</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:44:34</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -89876,7 +89876,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:39:04</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:29</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -89889,7 +89889,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:25</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:59</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -89902,7 +89902,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:20</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:51:52</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -92536,7 +92536,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:21</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:48</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -92588,7 +92588,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status low">Мало</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:40:38</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:47</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -92640,7 +92640,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:19</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:25</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -92653,7 +92653,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:35</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:09</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -97226,7 +97226,7 @@
                     </td>
                     <td>16</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Тверь')" title="Показать заправки с топливом в Тверь">6</span>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Тверь')" title="Показать заправки с топливом в Тверь">6</span><small style='color: #666; margin-left: 8px;'>(Очередь на: 1)</small>
                     </td>
                     <td>
                         <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Тверь')" title="Показать заправки без топлива в Тверь">10</span>
@@ -97260,7 +97260,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:25:24</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:44:47</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -97315,17 +97315,17 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-08-22 04:37:55</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="yes">
+                            <div class="station-item" data-status="queue">
                                 <div class="station-info">
                                     <div class="station-brand">Газпромнефть Газпромнефть</div>
                                     <div class="station-addr">Газпромнефть, Октябрьский проспект, Калининский муниципальный округ, Тверская область, Центральный федеральный округ, 170518, Россия</div>
                                     <div class="station-region">Тверская область</div>
                                     <div class="station-coords"><a href="https://yandex.ru/maps/?text=56.8062959,35.8710054" target="_blank" style="color: #1a73e8; font-size: 0.8em;">📍 56.8062959, 35.8710054</a></div>
-                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 64.27 ₽</span> <span class="fuel-badge">Есть 95 — 68.44 ₽</span> <span class="queue-indicator queue-medium">≈ 5–20 машин</span></div>
+                                    <div class="station-detail"><span class="fuel-badge">Есть 92 — 64.27 ₽</span> <span class="fuel-badge">Есть 95 — 68.44 ₽</span> <span class="fuel-badge">Есть 100 — 96.30 ₽</span> <span class="fuel-badge">Есть ДТ — 79.33 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:54:15</small>
+                                    <div class="station-status queue">Очередь</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:57:48</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -97351,7 +97351,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 03:30:06</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:51:20</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -97377,7 +97377,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:24:16</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:02</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -100067,7 +100067,7 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Ижевск" data-region="Приволжский ФО" data-yes="12" data-no="2" data-dt-only="0" data-total="15">
+            <tbody class="city-group" data-city="Ижевск" data-region="Приволжский ФО" data-yes="13" data-no="1" data-dt-only="0" data-total="15">
                 <tr class="city-row" data-city="Ижевск">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Ижевск')">▶</button>
@@ -100075,12 +100075,12 @@
                     </td>
                     <td>15</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Ижевск')" title="Показать заправки с топливом в Ижевск">12</span>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Ижевск')" title="Показать заправки с топливом в Ижевск">13</span>
                     </td>
                     <td>
-                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Ижевск')" title="Показать заправки без топлива в Ижевск">2</span>
+                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Ижевск')" title="Показать заправки без топлива в Ижевск">1</span>
                     </td>
-                    <td class="city-percent">80.0%</td>
+                    <td class="city-percent">86.7%</td>
                 </tr>
                 <tr class="station-details" id="details-Ижевск">
                     <td colspan="5">
@@ -100174,7 +100174,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:35:42</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:57</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -100187,10 +100187,10 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:31:02</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:22</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="no">
+                            <div class="station-item" data-status="yes">
                                 <div class="station-info">
                                     <div class="station-brand">Лукойл Лукойл</div>
                                     <div class="station-addr">Лукойл, 2, Мельничная улица, Промышленный узел "Позимь", Первомайский район, Ижевск, Удмуртия, Приволжский федеральный округ, 426063, Россия</div>
@@ -100199,8 +100199,8 @@
                                     <div class="station-detail"><span class="fuel-badge">92 — 64.55 ₽</span> <span class="fuel-badge">95 — 70.82 ₽</span> <span class="fuel-badge">ДТ — 81.66 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 01:00:52</small>
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:44:22</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -100226,7 +100226,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:32</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:01</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -100239,7 +100239,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:54</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:12</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -100252,7 +100252,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:06</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:01</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -100265,7 +100265,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:47</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:02</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -104940,7 +104940,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:39</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:26</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -105005,7 +105005,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:43:40</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:03</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -105044,7 +105044,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:36:29</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:44:07</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -105057,7 +105057,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:23</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:06</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Нет актуальных данных">
@@ -106356,7 +106356,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:33:29</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:40</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -106369,7 +106369,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:36</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:44</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -107746,7 +107746,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:29:48</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:02</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -109765,7 +109765,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:39:59</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:07</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -109791,7 +109791,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:56</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:59</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -111630,7 +111630,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status low">Мало</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:43:33</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:35</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Только ДТ">
@@ -111656,7 +111656,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:24</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:12</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Нет актуальных данных">
@@ -115200,7 +115200,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:07</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:20</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -116972,7 +116972,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:14</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:04</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -117113,7 +117113,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:19</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:30</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -117126,7 +117126,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:07</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:44</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -117831,7 +117831,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:35</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:45:38</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -117844,7 +117844,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:36:49</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:44</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Только ДТ">
@@ -117857,7 +117857,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status Только ДТ">Только ДТ</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:38:22</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:49:36</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -117909,7 +117909,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:27:39</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:28</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -118987,7 +118987,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:32:23</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:52:08</small>
                                 </div>
                             </div>
                         </div>
@@ -119405,7 +119405,7 @@
                 </tr>
             </tbody>
 
-            <tbody class="city-group" data-city="Полевской" data-region="Уральский ФО" data-yes="4" data-no="2" data-dt-only="0" data-total="8">
+            <tbody class="city-group" data-city="Полевской" data-region="Уральский ФО" data-yes="5" data-no="1" data-dt-only="0" data-total="8">
                 <tr class="city-row" data-city="Полевской">
                     <td>
                         <button class="expand-btn" onclick="toggleDetails('Полевской')">▶</button>
@@ -119413,12 +119413,12 @@
                     </td>
                     <td>8</td>
                     <td>
-                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Полевской')" title="Показать заправки с топливом в Полевской">4</span>
+                        <span class="badge badge-yes city-yes" style="cursor: pointer;" onclick="filterCityByStatus('yes', 'Полевской')" title="Показать заправки с топливом в Полевской">5</span>
                     </td>
                     <td>
-                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Полевской')" title="Показать заправки без топлива в Полевской">2</span>
+                        <span class="badge badge-no city-no" style="cursor: pointer;" onclick="filterCityByStatus('no', 'Полевской')" title="Показать заправки без топлива в Полевской">1</span>
                     </td>
-                    <td class="city-percent">50.0%</td>
+                    <td class="city-percent">62.5%</td>
                 </tr>
                 <tr class="station-details" id="details-Полевской">
                     <td colspan="5">
@@ -119437,7 +119437,7 @@
                                     <small style="color: #999; font-size: 0.75em;">2026-07-28 09:14:03</small>
                                 </div>
                             </div>
-                            <div class="station-item" data-status="no">
+                            <div class="station-item" data-status="yes">
                                 <div class="station-info">
                                     <div class="station-brand">Caravan Caravan</div>
                                     <div class="station-addr">Caravan, улица Володарского, Южный, Полевской, Полевской муниципальный округ, Свердловская область, Уральский федеральный округ, 623380, Россия</div>
@@ -119446,8 +119446,8 @@
                                     <div class="station-detail"><span class="fuel-badge">92 — 74.50 ₽</span> <span class="fuel-badge">98 — 99.10 ₽</span> <span class="fuel-badge">100 — 96.90 ₽</span></div>
                                 </div>
                                 <div style="text-align: right;">
-                                    <div class="station-status no">Нет</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:54:15</small>
+                                    <div class="station-status yes">Есть</div>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-20 20:04:21</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -124070,7 +124070,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:42:57</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:28</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -124083,7 +124083,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:39:49</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:46:20</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="no">
@@ -126856,7 +126856,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:39:34</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:43:25</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -126882,7 +126882,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:21:07</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:47:37</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="unknown">
@@ -126971,7 +126971,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status queue">Очередь</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:41:43</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:48:55</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="Нет актуальных данных">
@@ -129738,7 +129738,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 03:27:42</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:50:16</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -129764,7 +129764,7 @@
                                 </div>
                                 <div style="text-align: right;">
                                     <div class="station-status yes">Есть</div>
-                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:29:25</small>
+                                    <small style="color: #999; font-size: 0.75em;">2026-08-22 04:44:04</small>
                                 </div>
                             </div>
                             <div class="station-item" data-status="yes">
@@ -137583,7 +137583,7 @@
             });
             
             // Update summary cards
-            const dtOnly = 880;
+            const dtOnly = 881;
             const yesEl = document.querySelector('#filterYes .value');
             const noEl = document.getElementById('summaryNo');
             let yesVal = parseInt(yesEl.textContent);
