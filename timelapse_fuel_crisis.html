@@ -123,6 +123,16 @@ tr:hover { background:#1a1d29; }
   <label class="toggle"><input type="checkbox" id="dtAsNoFuel"><span class="slider"></span><span class="label">Только ДТ = нет</span></label>
   <button id="resetBtn" style="background:#1a1d29; color:#e0e0e0; border:1px solid #333; border-radius:8px; padding:8px 14px; font-size:14px; cursor:pointer; flex-shrink:0; align-self:flex-start;">Сбросить</button>
 </div>
+<div class="controls" id="periodControls">
+  <span style="color:#888;font-size:14px;align-self:center">Период:</span>
+  <input type="date" id="dateFrom" style="background:#1a1d29;color:#e0e0e0;border:1px solid #333;border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer;color-scheme:dark">
+  <span style="color:#666;align-self:center">→</span>
+  <input type="date" id="dateTo" style="background:#1a1d29;color:#e0e0e0;border:1px solid #333;border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer;color-scheme:dark">
+  <button class="period-quick" data-days="7" style="background:#1a1d29;color:#8ab4f8;border:1px solid #333;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;">7 дн</button>
+  <button class="period-quick" data-days="14" style="background:#1a1d29;color:#8ab4f8;border:1px solid #333;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;">14 дн</button>
+  <button class="period-quick" data-days="30" style="background:#1a1d29;color:#8ab4f8;border:1px solid #333;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;">30 дн</button>
+  <button class="period-quick" data-days="0" style="background:#1a1d29;color:#8ab4f8;border:1px solid #333;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;">Всё время</button>
+</div>
 <div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
 <h2>Области — было / стало</h2>
@@ -138,6 +148,17 @@ tr:hover { background:#1a1d29; }
 <script>
 let DATA = null;
 let dtAsNoFuel = false;
+let dateFilterFrom = null;
+let dateFilterTo = null;
+
+function filterByDate(series) {
+  if (!dateFilterFrom && !dateFilterTo) return series;
+  return series.filter(function(s) {
+    if (dateFilterFrom && s.date < dateFilterFrom) return false;
+    if (dateFilterTo && s.date > dateFilterTo) return false;
+    return true;
+  });
+}
 
 function adjustSeries(series) {
   if (!dtAsNoFuel) return series;
@@ -150,15 +171,21 @@ function adjustSeries(series) {
 }
 
 function updateSummary() {
-  var rs = adjustSeries(DATA.russia_series);
+  var rs = adjustSeries(filterByDate(DATA.russia_series));
+  if (rs.length === 0) {
+    document.getElementById('summary').innerHTML = '<div class="card"><div class="value">—</div><div class="label">Нет данных в выбранном периоде</div></div>';
+    return;
+  }
   var firstPct = rs[0]?.pct || 0;
   var lastPct = rs[rs.length-1]?.pct || 0;
   var minPct = Math.min(...rs.map(r => r.pct));
   var maxPct = Math.max(...rs.map(r => r.pct));
   var avgPct = (rs.reduce((a,r) => a+r.pct, 0) / rs.length).toFixed(1);
+  var firstDate = rs[0]?.date || '';
+  var lastDate = rs[rs.length-1]?.date || '';
   document.getElementById('summary').innerHTML =
-    '<div class="card blue"><div class="value">' + firstPct + '%</div><div class="label">Было (первый день)</div></div>' +
-    '<div class="card ' + (lastPct<40?'red':lastPct<60?'orange':'green') + '"><div class="value">' + lastPct + '%</div><div class="label">Стало (последний день)</div></div>' +
+    '<div class="card blue"><div class="value">' + firstPct + '%</div><div class="label">Было (' + firstDate + ')</div></div>' +
+    '<div class="card ' + (lastPct<40?'red':lastPct<60?'orange':'green') + '"><div class="value">' + lastPct + '%</div><div class="label">Стало (' + lastDate + ')</div></div>' +
     '<div class="card red"><div class="value">' + minPct + '%</div><div class="label">Минимум за период</div></div>' +
     '<div class="card green"><div class="value">' + maxPct + '%</div><div class="label">Максимум за период</div></div>' +
     '<div class="card orange"><div class="value">' + avgPct + '%</div><div class="label">Среднее за период</div></div>';
@@ -186,20 +213,7 @@ function init() {
   document.getElementById('period').textContent = `Период: ${p.start} → ${p.end} · "Было": ${p.start} – ${p.first_week_end} · "Стало": ${p.last_week_start} – ${p.end}`;
 
   // Summary cards
-  const rs = DATA.russia_series;
-  const firstPct = rs[0]?.pct || 0;
-  const lastPct = rs[rs.length-1]?.pct || 0;
-  const minPct = Math.min(...rs.map(r => r.pct));
-  const maxPct = Math.max(...rs.map(r => r.pct));
-  const avgPct = (rs.reduce((a,r) => a+r.pct, 0) / rs.length).toFixed(1);
-
-  document.getElementById('summary').innerHTML = `
-    <div class="card blue"><div class="value">${firstPct}%</div><div class="label">Было (первый день)</div></div>
-    <div class="card ${lastPct<40?'red':lastPct<60?'orange':'green'}"><div class="value">${lastPct}%</div><div class="label">Стало (последний день)</div></div>
-    <div class="card red"><div class="value">${minPct}%</div><div class="label">Минимум за период</div></div>
-    <div class="card green"><div class="value">${maxPct}%</div><div class="label">Максимум за период</div></div>
-    <div class="card orange"><div class="value">${avgPct}%</div><div class="label">Среднее за период</div></div>
-  `;
+  updateSummary();
 
   // Region before/after chart
   const rba = DATA.region_before_after;
@@ -284,13 +298,13 @@ function init() {
     // Determine which series to plot
     var seriesList = []; // [{label, series}]
     if (citySel.length > 0) {
-      citySel.forEach(function(c) { if (DATA.city_series[c]) seriesList.push({label: c, series: DATA.city_series[c]}); });
+      citySel.forEach(function(c) { if (DATA.city_series[c]) seriesList.push({label: c, series: filterByDate(DATA.city_series[c])}); });
     } else if (subjSel.length > 0) {
-      subjSel.forEach(function(s) { if (DATA.region_series[s]) seriesList.push({label: s, series: DATA.region_series[s]}); });
+      subjSel.forEach(function(s) { if (DATA.region_series[s]) seriesList.push({label: s, series: filterByDate(DATA.region_series[s])}); });
     } else if (foSel.length > 0) {
-      foSel.forEach(function(f) { if (DATA.fo_series[f]) seriesList.push({label: f, series: DATA.fo_series[f]}); });
+      foSel.forEach(function(f) { if (DATA.fo_series[f]) seriesList.push({label: f, series: filterByDate(DATA.fo_series[f])}); });
     } else {
-      seriesList.push({label: 'Вся РФ', series: DATA.russia_series});
+      seriesList.push({label: 'Вся РФ', series: filterByDate(DATA.russia_series)});
     }
 
     if (seriesList.length === 0) {
@@ -472,10 +486,56 @@ function init() {
     showPricesToggle.checked = false;
     dtAsNoFuelToggle.checked = false;
     dtAsNoFuel = false;
+    dateFilterFrom = null;
+    dateFilterTo = null;
+    document.getElementById('dateFrom').value = '';
+    document.getElementById('dateTo').value = '';
     populateSubjPanel();
     populateCityPanel();
     plotChart();
     updateSummary();
+  });
+
+  // Period filter: date pickers
+  var allDates = DATA.russia_series.map(function(r) { return r.date; }).sort();
+  var minDate = allDates[0];
+  var maxDate = allDates[allDates.length - 1];
+  var dateFromInput = document.getElementById('dateFrom');
+  var dateToInput = document.getElementById('dateTo');
+  dateFromInput.min = minDate; dateFromInput.max = maxDate;
+  dateToInput.min = minDate; dateToInput.max = maxDate;
+  dateFromInput.addEventListener('change', function() {
+    dateFilterFrom = this.value || null;
+    plotChart();
+    updateSummary();
+  });
+  dateToInput.addEventListener('change', function() {
+    dateFilterTo = this.value || null;
+    plotChart();
+    updateSummary();
+  });
+
+  // Period filter: quick buttons
+  document.querySelectorAll('.period-quick').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var days = parseInt(this.dataset.days);
+      if (days === 0) {
+        dateFilterFrom = null;
+        dateFilterTo = null;
+        dateFromInput.value = '';
+        dateToInput.value = '';
+      } else {
+        var end = new Date(maxDate);
+        var start = new Date(end);
+        start.setDate(start.getDate() - days + 1);
+        dateFilterFrom = start.toISOString().slice(0, 10);
+        dateFilterTo = maxDate;
+        dateFromInput.value = dateFilterFrom;
+        dateToInput.value = dateFilterTo;
+      }
+      plotChart();
+      updateSummary();
+    });
   });
   populateFoPanel();
   populateSubjPanel();
