@@ -132,6 +132,13 @@ tr:hover { background:#1a1d29; }
   <button class="period-quick" data-days="14" style="background:#1a1d29;color:#8ab4f8;border:1px solid #333;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;">14 дн</button>
   <button class="period-quick" data-days="30" style="background:#1a1d29;color:#8ab4f8;border:1px solid #333;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;">30 дн</button>
   <button class="period-quick" data-days="0" style="background:#1a1d29;color:#8ab4f8;border:1px solid #333;border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer;">Всё время</button>
+  <span style="color:#666;margin:0 4px;align-self:center">|</span>
+  <span style="color:#888;font-size:14px;align-self:center">Срез:</span>
+  <select id="granularity" style="background:#1a1d29;color:#e0e0e0;border:1px solid #333;border-radius:8px;padding:6px 10px;font-size:14px;cursor:pointer;">
+    <option value="day">По дням</option>
+    <option value="week">По неделям</option>
+    <option value="month">По месяцам</option>
+  </select>
 </div>
 <div class="chart-box tall"><canvas id="cityDailyChart"></canvas></div>
 
@@ -150,6 +157,7 @@ let DATA = null;
 let dtAsNoFuel = false;
 let dateFilterFrom = null;
 let dateFilterTo = null;
+let granularity = 'day';
 
 function filterByDate(series) {
   if (!dateFilterFrom && !dateFilterTo) return series;
@@ -158,6 +166,47 @@ function filterByDate(series) {
     if (dateFilterTo && s.date > dateFilterTo) return false;
     return true;
   });
+}
+
+function getWeekKey(dateStr) {
+  var d = new Date(dateStr);
+  var day = d.getDay() || 7; // Monday=1..Sunday=7
+  d.setDate(d.getDate() - day + 1);
+  return d.toISOString().slice(0, 10);
+}
+
+function getMonthKey(dateStr) {
+  return dateStr.slice(0, 7); // YYYY-MM
+}
+
+function aggregateSeries(series, gran) {
+  if (gran === 'day' || !gran) return series;
+  var groups = {};
+  var order = [];
+  series.forEach(function(s) {
+    var key = gran === 'week' ? getWeekKey(s.date) : getMonthKey(s.date);
+    if (!groups[key]) {
+      groups[key] = {date: key, total: 0, yes: 0, no: 0, queue: 0, low: 0, dt_only: 0, count: 0};
+      order.push(key);
+    }
+    var g = groups[key];
+    g.total += s.total;
+    g.yes += s.yes;
+    g.no += s.no;
+    g.queue += s.queue;
+    g.low += s.low;
+    g.dt_only += s.dt_only || 0;
+    g.count++;
+  });
+  return order.sort().map(function(key) {
+    var g = groups[key];
+    var avgPct = g.total > 0 ? Math.round(g.yes * 100.0 / g.total * 10) / 10 : 0;
+    return {date: g.date, total: g.total, yes: g.yes, no: g.no, queue: g.queue, low: g.low, dt_only: g.dt_only, pct: avgPct};
+  });
+}
+
+function applyAllFilters(series) {
+  return aggregateSeries(filterByDate(series), granularity);
 }
 
 function adjustSeries(series) {
@@ -171,7 +220,7 @@ function adjustSeries(series) {
 }
 
 function updateSummary() {
-  var rs = adjustSeries(filterByDate(DATA.russia_series));
+  var rs = adjustSeries(applyAllFilters(DATA.russia_series));
   if (rs.length === 0) {
     document.getElementById('summary').innerHTML = '<div class="card"><div class="value">—</div><div class="label">Нет данных в выбранном периоде</div></div>';
     return;
@@ -298,13 +347,13 @@ function init() {
     // Determine which series to plot
     var seriesList = []; // [{label, series}]
     if (citySel.length > 0) {
-      citySel.forEach(function(c) { if (DATA.city_series[c]) seriesList.push({label: c, series: filterByDate(DATA.city_series[c])}); });
+      citySel.forEach(function(c) { if (DATA.city_series[c]) seriesList.push({label: c, series: applyAllFilters(DATA.city_series[c])}); });
     } else if (subjSel.length > 0) {
-      subjSel.forEach(function(s) { if (DATA.region_series[s]) seriesList.push({label: s, series: filterByDate(DATA.region_series[s])}); });
+      subjSel.forEach(function(s) { if (DATA.region_series[s]) seriesList.push({label: s, series: applyAllFilters(DATA.region_series[s])}); });
     } else if (foSel.length > 0) {
-      foSel.forEach(function(f) { if (DATA.fo_series[f]) seriesList.push({label: f, series: filterByDate(DATA.fo_series[f])}); });
+      foSel.forEach(function(f) { if (DATA.fo_series[f]) seriesList.push({label: f, series: applyAllFilters(DATA.fo_series[f])}); });
     } else {
-      seriesList.push({label: 'Вся РФ', series: filterByDate(DATA.russia_series)});
+      seriesList.push({label: 'Вся РФ', series: applyAllFilters(DATA.russia_series)});
     }
 
     if (seriesList.length === 0) {
@@ -488,8 +537,10 @@ function init() {
     dtAsNoFuel = false;
     dateFilterFrom = null;
     dateFilterTo = null;
+    granularity = 'day';
     document.getElementById('dateFrom').value = '';
     document.getElementById('dateTo').value = '';
+    document.getElementById('granularity').value = 'day';
     populateSubjPanel();
     populateCityPanel();
     plotChart();
@@ -536,6 +587,13 @@ function init() {
       plotChart();
       updateSummary();
     });
+  });
+
+  // Granularity selector
+  document.getElementById('granularity').addEventListener('change', function() {
+    granularity = this.value;
+    plotChart();
+    updateSummary();
   });
   populateFoPanel();
   populateSubjPanel();
